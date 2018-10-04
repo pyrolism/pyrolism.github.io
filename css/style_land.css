@@ -160,6 +160,10 @@ nav a#openup {
 }
 
 @media screen and (max-width: 580px) {
+  .hide-on-small {
+    display: none;
+  }
+
   #showcase {
     height: 50vh;
   }

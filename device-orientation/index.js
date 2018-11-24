@@ -13,26 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-'use strict';
+"use strict";
 
 // Create viewer.
-var viewer = new Marzipano.Viewer(document.getElementById('pano'));
+var viewer = new Marzipano.Viewer(document.getElementById("pano"));
 
 // Register the custom control method.
 var deviceOrientationControlMethod = new DeviceOrientationControlMethod();
 var controls = viewer.controls();
-controls.registerMethod('deviceOrientation', deviceOrientationControlMethod);
+controls.registerMethod("deviceOrientation", deviceOrientationControlMethod);
 
 // Create source.
-var source = Marzipano.ImageUrlSource.fromString(
-  "//www.marzipano.net/media/cubemap/{f}.jpg"
-);
+var source = Marzipano.ImageUrlSource.fromString("../../tiles/20180922.jpg");
 
 // Create geometry.
-var geometry = new Marzipano.CubeGeometry([{ tileSize: 1024, size: 1024 }]);
+var geometry = new Marzipano.EquirectGeometry([{ width: 4000 }]);
 
 // Create view.
-var limiter = Marzipano.RectilinearView.limit.traditional(1024, 100*Math.PI/180);
+var limiter = Marzipano.RectilinearView.limit.traditional(
+  1024,
+  (100 * Math.PI) / 180
+);
 var view = new Marzipano.RectilinearView(null, limiter);
 
 // Create scene.
@@ -50,7 +51,7 @@ scene.switchTo();
 
 var enabled = false;
 
-var toggleElement = document.getElementById('toggleDeviceOrientation');
+var toggleElement = document.getElementById("toggleDeviceOrientation");
 
 function enable() {
   deviceOrientationControlMethod.getPitch(function(err, pitch) {
@@ -58,15 +59,15 @@ function enable() {
       view.setPitch(pitch);
     }
   });
-  controls.enableMethod('deviceOrientation');
+  controls.enableMethod("deviceOrientation");
   enabled = true;
-  toggleElement.className = 'enabled';
+  toggleElement.className = "enabled";
 }
 
 function disable() {
-  controls.disableMethod('deviceOrientation');
+  controls.disableMethod("deviceOrientation");
   enabled = false;
-  toggleElement.className = '';
+  toggleElement.className = "";
 }
 
 function toggle() {
@@ -77,4 +78,4 @@ function toggle() {
   }
 }
 
-toggleElement.addEventListener('click', toggle);
+toggleElement.addEventListener("click", toggle);

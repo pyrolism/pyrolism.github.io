@@ -24,7 +24,7 @@ var controls = viewer.controls();
 controls.registerMethod("deviceOrientation", deviceOrientationControlMethod);
 
 // Create source.
-var source = Marzipano.ImageUrlSource.fromString("../../tiles/20180922.jpg");
+var source = Marzipano.ImageUrlSource.fromString("../../tiles/0.jpg");
 
 // Create geometry.
 var geometry = new Marzipano.EquirectGeometry([{ width: 4000 }]);

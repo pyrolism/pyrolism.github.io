@@ -1,0 +1,56 @@
+body {
+  background-color: #ebebeb;
+  color: #333;
+
+  line-height: 2 em;
+  margin: 0;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  display: -webkit-flex; /* Safari */
+  min-height: 90vh;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-family: "Open Sans", sans-serif;
+  color: #150e31;
+  letter-spacing: 10px;
+}
+
+.comingSoon {
+  font-family: "Open Sans", sans-serif;
+  font-weight: bolder;
+  color: #150e31;
+  font-size: 1.5rem;
+  letter-spacing: 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+body .container img {
+  width: 40%;
+  padding: 40px;
+}
+
+@media (max-width: 700px) {
+  body .container img {
+    width: 80%;
+    padding: 40px;
+  }
+}
+
+footer .footer-bottom {
+  padding: 2rem;
+  font-family: "Open Sans", sans-serif;
+  color: #150e31;
+  font-size: 15px;
+  text-align: center;
+}

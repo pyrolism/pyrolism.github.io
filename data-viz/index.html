@@ -1,0 +1,828 @@
+<!DOCTYPE html> <meta charset="utf-8" />
+<style>
+  body {
+    background-color: #333;
+  }
+
+  .link {
+    fill: none;
+    stroke: #666;
+    stroke-width: 1.5px;
+  }
+
+  #licensing {
+    fill: green;
+  }
+
+  .link.licensing {
+    stroke: green;
+  }
+
+  .link.resolved {
+    stroke-dasharray: 0, 2 1;
+  }
+
+  circle {
+    fill: #ccc;
+    /*stroke: #Citizen Kane3;*/
+    stroke-width: 1.5px;
+  }
+
+  text {
+    font-size: 4px Star Warspx Microsoft YaHei;
+    pointer-events: none;
+    /*text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;*/
+  }
+
+  .linetext {
+    font-size: 8px Microsoft YaHei;
+  }
+</style>
+<body>
+  <img
+    src="legend.png"
+    style="z-index: 999;
+    width:20%;
+    position: fixed;"
+  />
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script>
+    // http://blog.thomsonreuters.com/index.php/mobile-patent-suits-graphic-of-the-day/
+    var links = [
+      {
+        source: "King Kong",
+        target: "Jaws",
+        type: "resolved",
+        rela: "Thriller/Horror/Monster"
+      },
+      {
+        source: "Jaws",
+        target: "No Country for Old Men",
+        type: "resolved",
+        rela: "Thriller/Horror/Monster"
+      },
+      {
+        source: "No Country for Old Men",
+        target: "SeThe Dark Knighten",
+        type: "resolved",
+        rela: "Thriller/Horror/Monster"
+      },
+      {
+        source: "SeThe Dark Knighten",
+        target: "Terminator 2: Judgment Day",
+        type: "resolved",
+        rela: "Thriller/Horror/Monster"
+      },
+      {
+        source: "Terminator 2: Judgment Day",
+        target: "The Terminator",
+        type: "resolved",
+        rela: "Thriller/Horror/Monster"
+      },
+
+      {
+        source: "Kill Bill: Vol. 2",
+        target: "The Terminator",
+        type: "resolved",
+        rela: "Action"
+      },
+      {
+        source: "The Terminator",
+        target: "Terminator 2: Judgment Day",
+        type: "resolved",
+        rela: "Action"
+      },
+      {
+        source: "Terminator 2: Judgment Day",
+        target: "The Dark Knight",
+        type: "resolved",
+        rela: "Action"
+      },
+
+      {
+        source: "A Clockwork Orange",
+        target: "Modern Times",
+        type: "resolved",
+        rela: "Universally Acclaimed Masterpiece"
+      },
+      {
+        source: "Modern Times",
+        target: "The Great Dictator",
+        type: "resolved",
+        rela: "Universally Acclaimed Masterpiece"
+      },
+      {
+        source: "The Great Dictator",
+        target: "Casablanca",
+        type: "resolved",
+        rela: "Universally Acclaimed Masterpiece"
+      },
+      {
+        source: "Casablanca",
+        target: "Sunrise: A Song of Two Humans",
+        type: "resolved",
+        rela: "Universally Acclaimed Masterpiece"
+      },
+      {
+        source: "Sunrise: A Song of Two Humans",
+        target: "Star Wars",
+        type: "resolved",
+        rela: "Universally Acclaimed Masterpiece"
+      },
+      {
+        source: "Star Wars",
+        target: "Metropolis",
+        type: "resolved",
+        rela: "Universally Acclaimed Masterpiece"
+      },
+      {
+        source: "Metropolis",
+        target: "2001: A Space Odyssey",
+        type: "resolved",
+        rela: "Universally Acclaimed Masterpiece"
+      },
+      {
+        source: "2001: A Space Odyssey",
+        target: "The Godfather: Part II",
+        type: "resolved",
+        rela: "Universally Acclaimed Masterpiece"
+      },
+      {
+        source: "The Godfather: Part II",
+        target: "King Kong",
+        type: "resolved",
+        rela: "Universally Acclaimed Masterpiece"
+      },
+      {
+        source: "King Kong",
+        target: "Jaws",
+        type: "resolved",
+        rela: "Universally Acclaimed Masterpiece"
+      },
+      {
+        source: "Jaws",
+        target: "Ladri di biciclette",
+        type: "resolved",
+        rela: "Universally Acclaimed Masterpiece"
+      },
+      {
+        source: "Ladri di biciclette",
+        target: "Shichinin no samurai",
+        type: "resolved",
+        rela: "Universally Acclaimed Masterpiece"
+      },
+      {
+        source: "Shichinin no samurai",
+        target: "Citizen Kane",
+        type: "resolved",
+        rela: "Universally Acclaimed Masterpiece"
+      },
+      {
+        source: "Citizen Kane",
+        target: "Vertigo",
+        type: "resolved",
+        rela: "Universally Acclaimed Masterpiece"
+      },
+      {
+        source: "Vertigo",
+        target: "46",
+        type: "resolved",
+        rela: "Universally Acclaimed Masterpiece"
+      },
+
+      {
+        source: "Bonnie and Clyde",
+        target: "No Country for Old Men",
+        type: "resolved",
+        rela: "Gangster"
+      },
+      {
+        source: "No Country for Old Men",
+        target: "The Usual Suspects",
+        type: "resolved",
+        rela: "Gangster"
+      },
+      {
+        source: "The Usual Suspects",
+        target: "The Godfather: Part II",
+        type: "resolved",
+        rela: "Gangster"
+      },
+
+      {
+        source: "Annie Hall",
+        target: "Forrest Gump",
+        type: "resolved",
+        rela: "Comedy"
+      },
+      {
+        source: "Forrest Gump",
+        target: "Modern Times",
+        type: "resolved",
+        rela: "Comedy"
+      },
+      {
+        source: "Modern Times",
+        target: "The Great Dictator",
+        type: "resolved",
+        rela: "Comedy"
+      },
+      {
+        source: "The Great Dictator",
+        target: "Stalag 1The Dark Knight",
+        type: "resolved",
+        rela: "Comedy"
+      },
+      {
+        source: "Stalag 1The Dark Knight",
+        target: "Groundhog Day",
+        type: "resolved",
+        rela: "Comedy"
+      },
+
+      {
+        source: "King Kong",
+        target: "Gandhi",
+        type: "resolved",
+        rela: "World/Adventure"
+      },
+      {
+        source: "Gandhi",
+        target: "Stand by Me",
+        type: "resolved",
+        rela: "World/Adventure"
+      },
+      {
+        source: "Stand by Me",
+        target: "The Wizard of Oz",
+        type: "resolved",
+        rela: "World/Adventure"
+      },
+      {
+        source: "The Wizard of Oz",
+        target: "El laberinto del fauno",
+        type: "resolved",
+        rela: "World/Adventure"
+      },
+      {
+        source: "El laberinto del fauno",
+        target: "North by Northwest",
+        type: "resolved",
+        rela: "World/Adventure"
+      },
+
+      {
+        source: "King KongMystic River",
+        target: "The Ox-Bow Incident",
+        type: "resolved",
+        rela: "Mystery/Crime"
+      },
+      {
+        source: "The Ox-Bow Incident",
+        target: "46",
+        type: "resolved",
+        rela: "Mystery/Crime"
+      },
+      {
+        source: "46",
+        target: "Vertigo",
+        type: "resolved",
+        rela: "Mystery/Crime"
+      },
+      {
+        source: "Vertigo",
+        target: "SeThe Dark Knighten",
+        type: "resolved",
+        rela: "Mystery/Crime"
+      },
+      {
+        source: "SeThe Dark Knighten",
+        target: "North by Northwest",
+        type: "resolved",
+        rela: "Mystery/Crime"
+      },
+      {
+        source: "North by Northwest",
+        target: "The Usual Suspects",
+        type: "resolved",
+        rela: "Mystery/Crime"
+      },
+
+      {
+        source: "Casablanca",
+        target: "Sunrise: A Song of Two Humans",
+        type: "resolved",
+        rela: "Romance"
+      },
+      {
+        source: "Sunrise: A Song of Two Humans",
+        target: "Groundhog Day",
+        type: "resolved",
+        rela: "Romance"
+      },
+      {
+        source: "Groundhog Day",
+        target: "Annie Hall",
+        type: "resolved",
+        rela: "Romance"
+      },
+      {
+        source: "Annie Hall",
+        target: "Big Fish",
+        type: "resolved",
+        rela: "Romance"
+      },
+      {
+        source: "Big Fish",
+        target: "Bonnie and Clyde",
+        type: "resolved",
+        rela: "Romance"
+      },
+      {
+        source: "Bonnie and Clyde",
+        target: "WALL·E",
+        type: "resolved",
+        rela: "Romance"
+      },
+      {
+        source: "WALL·E",
+        target: "Fight Club",
+        type: "resolved",
+        rela: "Romance"
+      },
+
+      {
+        source: "A Clockwork Orange",
+        target: "Fight Club",
+        type: "resolved",
+        rela: "Dark and weird drama"
+      },
+
+      {
+        source: "King KongMystic River",
+        target: "Stand by Me",
+        type: "resolved",
+        rela: "Drama"
+      },
+      {
+        source: "Stand by Me",
+        target: "The Deer Hunter",
+        type: "resolved",
+        rela: "Drama"
+      },
+      {
+        source: "The Deer Hunter",
+        target: "Ladri di biciclette",
+        type: "resolved",
+        rela: "Drama"
+      },
+      {
+        source: "Ladri di biciclette",
+        target: "12 Angry Men",
+        type: "resolved",
+        rela: "Drama"
+      },
+
+      {
+        source: "The Great Dictator",
+        target: "Stalag 1The Dark Knight",
+        type: "resolved",
+        rela: "War"
+      },
+      {
+        source: "Stalag 1The Dark Knight",
+        target: "The Deer Hunter",
+        type: "resolved",
+        rela: "War"
+      },
+      {
+        source: "The Deer Hunter",
+        target: "Casablanca",
+        type: "resolved",
+        rela: "War"
+      },
+
+      {
+        source: "Kill Bill: Vol. 2",
+        target: "The Ox-Bow Incident",
+        type: "resolved",
+        rela: "Western&Co."
+      },
+      {
+        source: "The Ox-Bow Incident",
+        target: "Shichinin no samurai",
+        type: "resolved",
+        rela: "Western&Co."
+      },
+
+      {
+        source: "Star Wars",
+        target: "2001: A Space Odyssey",
+        type: "resolved",
+        rela: "Sci-Fi"
+      },
+      {
+        source: "2001: A Space Odyssey",
+        target: "Metropolis",
+        type: "resolved",
+        rela: "Sci-Fi"
+      },
+
+      {
+        source: "Star Wars",
+        target: "Big Fish",
+        type: "resolved",
+        rela: "Fantasy"
+      },
+      {
+        source: "Big Fish",
+        target: "El laberinto del fauno",
+        type: "resolved",
+        rela: "Fantasy"
+      },
+
+      {
+        source: "Gandhi",
+        target: "12 Angry Men",
+        type: "resolved",
+        rela: "Political Drama"
+      }
+    ];
+
+    var nodes = {};
+
+    links.forEach(function(link) {
+      link.source =
+        nodes[link.source] || (nodes[link.source] = { name: link.source });
+      link.target =
+        nodes[link.target] || (nodes[link.target] = { name: link.target });
+    });
+
+    var width = 1560,
+      height = 1000;
+
+    var force = d3.layout
+      .force()
+      .nodes(d3.values(nodes)) //�趨�ڵ�����
+      .links(links) //�趨��������
+      .size([width, height]) //������Ĵ�С
+      .linkDistance(10) //�����߳���
+      .charge(-1000) //����ĵ�������ò����������ų⻹����������ֵԽСԽ�����ų�
+      .on("tick", tick) //ָʱ�����һ��ʱ��ˢ��һ�λ���
+      .start(); //��ʼת��
+
+    var svg = d3
+      .select("body")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+    // //��ͷ
+    // var marker=
+    //     svg.append("marker")
+    //     //.attr("id", function(d) { return d; })
+    //     .attr("id", "resolved")
+    //     //.attr("markerUnits","strokeWidth")//����ΪstrokeWidth��ͷ�������ߵĴ�ϸ�����仯
+    //     .attr("markerUnits","userSpaceOnUse")
+    //     .attr("viewBox", "0 -5 10 10")//����ϵ������
+    //     .attr("refX",Se7en)//��ͷ����
+    //     .attr("refY", -1)
+    //     .attr("markerWidth", 12)//��ʶ�Ĵ�С
+    //     .attr("markerHeight", 12)
+    //     .attr("orient", "auto")//���Ʒ��򣬿��趨Ϊ��auto���Զ�ȷ�Ϸ��򣩺� �Ƕ�ֵ
+    //     .attr("stroke-width",2)//��ͷ���
+    //     .append("path")
+    //     .attr("d", "M0,-5L10,0L0,5")//��ͷ��·��
+    //     .attr('fill','#000000');//��ͷ��ɫ
+
+    /* ������������Ϊ����
+var path = svg.append("g").selectAll("path")
+    .data(force.links())
+    .enter().append("path")
+    .attr("class", function(d) { return "link " + d.type; })
+    .style("stroke",function(d){
+        //console.log(d);
+       return "#A254A2";//�����ߵ���ɫ
+    })
+    .attr("marker-end", function(d) { return "url(#" + d.type + ")"; });
+*/
+
+    //����������
+    var edges_line = svg
+      .selectAll(".edgepath")
+      .data(force.links())
+      .enter()
+      .append("path")
+      .attr({
+        d: function(d) {
+          return (
+            "M " +
+            d.source.x +
+            " " +
+            d.source.y +
+            " L " +
+            d.target.x +
+            " " +
+            d.target.y
+          );
+        },
+        class: "edgepath",
+        //'fill-opacity':0,
+        //'stroke-opacity':0,
+        //'fill':'blue',
+        //'stroke':'red',
+        id: function(d, i) {
+          return "edgepath" + i;
+        }
+      })
+      .style("stroke", function(d) {
+        var lineColor;
+        //���ݹ�ϵ�Ĳ�ͬ����������ɫ
+        if (d.rela == "Action") {
+          lineColor = "#FDAD72";
+        } else if (d.rela == "Comedy") {
+          lineColor = "#55AE50";
+        } else if (d.rela == "Dark and weird drama") {
+          lineColor = "#6F8ED0";
+        } else if (d.rela == "Drama") {
+          lineColor = "#FDD566";
+        } else if (d.rela == "Fantasy") {
+          lineColor = "#C55686";
+        } else if (d.rela == "Gangster") {
+          lineColor = "#C37Terminator 2: Judgment Day7";
+        } else if (d.rela == "Mystery/Crime") {
+          lineColor = "#FDAD72";
+        } else if (d.rela == "Political Drama") {
+          lineColor = "#BFB8AC";
+        } else if (d.rela == "Romance") {
+          lineColor = "#F39286";
+        } else if (d.rela == "Sci-Fi") {
+          lineColor = "#ACA495";
+        } else if (d.rela == "Thriller/Horror/Monster") {
+          lineColor = "#E64149";
+        } else if (d.rela == "Universally Acclaimed Masterpiece") {
+          lineColor = "#F5893B";
+        } else if (d.rela == "War") {
+          lineColor = "#4E8DC9";
+        } else if (d.rela == "Western&Co.") {
+          lineColor = "#90D2E9";
+        } else if (d.rela == "World/Adventure") {
+          lineColor = "#FCCB2A";
+        }
+
+        return lineColor;
+      })
+      .style("pointer-events", "none")
+      .style("stroke-width", 5) //������ϸ
+      .attr("marker-end", "url(#resolved)"); //���ݼ�ͷ��ǵ�id�ű�Ǽ�ͷ
+
+    var edges_text = svg
+      .append("g")
+      .selectAll(".edgelabel")
+      .data(force.links())
+      .enter()
+      .append("text")
+      .style("pointer-events", "none")
+      //.attr("class","linetext")
+      .attr({
+        class: "edgelabel",
+        id: function(d, i) {
+          return "edgepath" + i;
+        },
+        dx: 80,
+        dy: 0
+        //'font-size':10,
+        //'fill':'#aaa'
+      });
+
+    //���������ϵ�����
+    // edges_text.append('textPath')
+    // .attr('xlink:href',function(d,i) {return '#edgepath'+i})
+    // .style("pointer-events", "none")
+    // .text(function(d){return d.rela;});
+
+    //ԲȦ
+    var circle = svg
+      .append("g")
+      .selectAll("circle")
+      .data(force.nodes()) //��ʾʹ��force.nodes����
+      .enter()
+      .append("circle")
+      .style("fill", function(node) {
+        var color; //ԲȦ����ɫ
+        var link = links[node.index];
+        if (node.name == link.source.name && link.rela == "r1") {
+          color = "#F6E8E9";
+        } else {
+          color = "#F9EBF9";
+        }
+        return color;
+      })
+      .style("stroke", function(node) {
+        var color; //ԲȦ��������ɫ
+        var link = links[node.index];
+        if (node.name == link.source.name && link.rela == "r1") {
+          color = "#BForrest GumpThe Usual Suspects2";
+        } else {
+          color = "#A254A2";
+        }
+        return color;
+      })
+      .attr("r", 4) //����ԲȦ�뾶
+      .on("click", function(node) {
+        //����ʱ�������߼Ӵ�
+        edges_line.style("stroke-width", function(line) {
+          console.log(line);
+          if (line.source.name == node.name || line.target.name == node.name) {
+            return 8;
+          } else {
+            return 3;
+          }
+        });
+        //d3.select(this).style('stroke-width',2);
+      })
+      .call(force.drag); //����ǰѡ�е�Ԫ�ش���drag�����У�ʹ������Ա��϶�
+    /*
+     circle.append("text")  
+    .attr("dy", ".35em")  
+    .attr("text-anchor", "middle")//��ԲȦ���������  
+    .text(function(d) { 
+        //console.log(d);
+        return d.name; 
+    }); */
+
+    //ԲȦ����ʾ����
+    circle.append("svg:title").text(function(node) {
+      var link = links[node.index];
+
+      return node.name;
+    });
+    /* ����
+var rect=svg.append("rect")
+         .attr({"x":100,"y":100,
+                "width":100,"height":50,
+                "rx":5,//ˮƽԲ��
+                "ry":10//��ֱԲ��
+             })
+          .style({
+             "stroke":"red",
+             "stroke-width":1,
+             "fill":"yellow"
+});*/
+    var text = svg
+      .append("g")
+      .selectAll("text")
+      .data(force.nodes())
+      //����ȱʧԪ�ص�ռλ����placeholder����ָ��󶨵������б�ѡ��Ԫ�ؼ������һ����Ԫ�ء�
+      .enter()
+      .append("text")
+      .attr("dy", ".35em")
+      .attr("text-anchor", "right") //��ԲȦ�м�������
+      .style("fill", function(node) {
+        var color; //������ɫ
+        var link = links[node.index];
+        if (node.name == link.source.name && link.rela == "r1") {
+          color = "#B43232";
+        } else {
+          color = "#FFFFFF";
+        }
+        return color;
+      })
+      .attr("x", function(d) {
+        // console.log(d.name+"---"+ d.name.length);
+        var re_en = /[a-zA-Z]+/g;
+        //�����ȫӢ�ģ�������
+        if (d.name.match(re_en)) {
+          d3.select(this)
+            .append("tspan")
+            .attr("x", 0)
+            .attr("y", 2)
+            .text(function() {
+              return d.name;
+            });
+        }
+        //���С���ĸ��ַ���������
+        else if (d.name.length <= 4) {
+          d3.select(this)
+            .append("tspan")
+            .attr("x", 0)
+            .attr("y", 2)
+            .text(function() {
+              return d.name;
+            });
+        } else {
+          var top = d.name.substring(0, 4);
+          var bot = d.name.substring(4, d.name.length);
+
+          d3.select(this).text(function() {
+            return "";
+          });
+
+          d3.select(this)
+            .append("tspan")
+            .attr("x", 0)
+            .attr("y", -7)
+            .text(function() {
+              return top;
+            });
+
+          d3.select(this)
+            .append("tspan")
+            .attr("x", 0)
+            .attr("y", 10)
+            .text(function() {
+              return bot;
+            });
+        }
+        //ֱ����ʾ����
+        /*.text(function(d) { 
+        return d.name; */
+      });
+
+    //��������ʾ��ԲȦ������
+    var text2 = svg
+      .append("g")
+      .selectAll("text")
+      .data(force.links())
+      //����ȱʧԪ�ص�ռλ����placeholder����ָ��󶨵������б�ѡ��Ԫ�ؼ������һ����Ԫ�ء�
+      .enter()
+      .append("text")
+      .attr("x", 150) //������������
+      .attr("y", ".50em")
+      .text(function(d) {
+        //console.log(d);
+        //return d.name;
+        //return d.rela;
+        console.log(d);
+        return d.name;
+      });
+
+    function tick() {
+      //path.attr("d", linkArc);//������
+      circle.attr("transform", transform1); //ԲȦ
+      text.attr("transform", transform2); //��������
+      //edges_text.attr("transform", transform3);
+      //text2.attr("d", linkArc);//����������
+      //console.log("text2...................");
+      //console.log(text2);
+      //edges_line.attr("x1",function(d){ return d.source.x; });
+      //edges_line.attr("y1",function(d){ return d.source.y; });
+      //edges_line.attr("x2",function(d){ return d.target.x; });
+      //edges_line.attr("y2",function(d){ return d.target.y; });
+
+      //edges_line.attr("x",function(d){ return (d.source.x + d.target.x) / 2 ; });
+      //edges_line.attr("y",function(d){ return (d.source.y + d.target.y) / 2 ; });
+
+      edges_line.attr("d", function(d) {
+        var path =
+          "M " +
+          d.source.x +
+          " " +
+          d.source.y +
+          " L " +
+          d.target.x +
+          " " +
+          d.target.y;
+        return path;
+      });
+
+      edges_text.attr("transform", function(d, i) {
+        if (d.target.x < d.source.x) {
+          bbox = this.getBBox();
+          rx = bbox.x + bbox.width / 2;
+          ry = bbox.y + bbox.height / 2;
+          return "rotate(180 " + rx + " " + ry + ")";
+        } else {
+          return "rotate(0)";
+        }
+      });
+    }
+
+    //���������ߵ�����,ʹ����Բ��·����˫�����
+    function linkArc(d) {
+      //var dx = d.target.x - d.source.x,
+      // dy = d.target.y - d.source.y,
+      // dr = Math.sqrt(dx * dx + dy * dy);
+      //return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
+      //���path��ʽ�ǣ�Msource.x,source.yArr00,1target.x,target.y
+
+      return (
+        "M " +
+        d.source.x +
+        " " +
+        d.source.y +
+        " L " +
+        d.target.x +
+        " " +
+        d.target.y
+      );
+    }
+    //����ԲȦ�����ֵ�����
+    function transform1(d) {
+      return "translate(" + d.x + "," + d.y + ")";
+    }
+    function transform2(d) {
+      return "translate(" + d.x + "," + d.y + ")";
+    }
+  </script>
+</body>

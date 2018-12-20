@@ -6,7 +6,7 @@ body {
 }
 
 .container {
-  width: 80%;
+  width: 68%;
   margin: auto;
   overflow: hidden;
   text-align: center;
@@ -34,6 +34,8 @@ body {
   position: absolute;
   margin-top: 50px;
   margin-left: 200px;
+
+  padding-bottom: 8px;
 }
 
 .Name a {
@@ -41,6 +43,7 @@ body {
   letter-spacing: 1px;
   font-size: 1.5rem;
   font-weight: bold;
+  text-decoration: none;
   color: #150e31;
 }
 
@@ -73,14 +76,14 @@ nav a {
   text-decoration: none;
 }
 
-a {
+nav a {
   position: relative;
   text-transform: uppercase;
   text-decoration: none;
   padding-bottom: 8px;
 }
-a:before,
-a:after {
+nav a:before,
+nav a:after {
   content: "";
   position: absolute;
   bottom: 2px;
@@ -89,7 +92,7 @@ a:after {
   height: 3px;
   background-color: #150e31;
 }
-a:before {
+nav a:before {
   opacity: 0;
   -webkit-transform: translateY(-8px);
   transform: translateY(-8px);
@@ -99,7 +102,7 @@ a:before {
   transition: transform 0s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0s,
     -webkit-transform 0s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-a:after {
+nav a:after {
   opacity: 0;
   -webkit-transform: translateY(4px);
   transform: translateY(4px);
@@ -110,16 +113,16 @@ a:after {
   transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275),
     opacity 0.2s, -webkit-transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-a:hover:before,
-a:hover:after,
-a:focus:before,
-a:focus:after {
+nav a:hover:before,
+nav a:hover:after,
+nav a:focus:before,
+nav a:focus:after {
   opacity: 1;
   -webkit-transform: translateY(0);
   transform: translateY(0);
 }
-a:hover:before,
-a:focus:before {
+nav a:hover:before,
+nav a:focus:before {
   transition: opacity 0.2s,
     -webkit-transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275),
@@ -127,8 +130,8 @@ a:focus:before {
   transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275),
     opacity 0.2s, -webkit-transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-a:hover:after,
-a:focus:after {
+nav a:hover:after,
+nav a:focus:after {
   transition: opacity 0s 0.2s,
     -webkit-transform 0s 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transition: transform 0s 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275),
@@ -148,9 +151,19 @@ a:focus:after {
   text-transform: uppercase;
 }
 
-body .container img {
-  width: 40%;
-  padding: 40px;
+/* Projects */
+.projects {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.projects img {
+  width: 100%;
+}
+
+.projects img:hover {
+  opacity: 0.5;
 }
 
 @media (max-width: 700px) {

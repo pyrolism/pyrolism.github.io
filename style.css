@@ -5,13 +5,6 @@ body {
   margin: 0;
 }
 
-.title {
-  font-family: "Open Sans", sans-serif;
-  color: #150e31;
-  font-size: 20px;
-  letter-spacing: 10px;
-}
-
 /* Navigation */
 
 #Navi {
@@ -27,7 +20,7 @@ body {
 
 .Name a {
   font-family: "Open Sans", sans-serif;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   font-size: 1.5rem;
   font-weight: bold;
   text-decoration: none;
@@ -38,7 +31,7 @@ nav {
   padding-top: 60px;
   padding-right: 10vw;
   font-family: "Open Sans", sans-serif;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   font-weight: bold;
   font-size: 0.75rem;
   text-transform: uppercase;
@@ -137,6 +130,17 @@ nav a:focus:after {
   display: -webkit-flex; /* Safari */
   flex-flow: column;
   padding-top: 10vh;
+}
+
+.title {
+  font-family: "Open Sans", sans-serif;
+  color: #150e31;
+  font-size: 20px;
+  letter-spacing: 10px;
+  justify-content: center;
+  padding-top: 30vh;
+  overflow: hidden;
+  display: -webkit-flex; /* Safari */
 }
 
 .comingSoon {

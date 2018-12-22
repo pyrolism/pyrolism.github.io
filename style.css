@@ -1,6 +1,8 @@
 body {
   background-color: #fff;
-  color: #333;
+
+  color: #150e31;
+  font-family: "Open Sans", sans-serif;
   line-height: 2 em;
   margin: 0;
 }
@@ -154,9 +156,12 @@ nav a:focus:after {
 }
 
 /* Projects */
+.projectBlock {
+  padding-left: 10vw;
+}
+
 .catagory h2 {
   color: #150e31;
-  padding-left: 10vw;
   padding-bottom: 20px;
   font-size: 1.2rem;
   font-weight: bolder;
@@ -167,7 +172,6 @@ nav a:focus:after {
   display: grid;
   grid-gap: 0.2rem;
   grid-template-columns: repeat(3, 1fr);
-  padding-left: 10vw;
 }
 
 .projects figure {
@@ -337,10 +341,11 @@ figure.effect-lily:hover p {
 }
 
 .projectInfo .projectInfoList {
-  padding-top: 9rem;
+  padding-top: 7rem;
 }
 
 .projectBody {
+  padding-bottom: 3rem;
 }
 
 .projectBody h2 {
@@ -402,12 +407,6 @@ figure.effect-lily:hover p {
   color: #fff;
 }
 
-@media (max-width: 700px) {
-  .projects {
-    grid-template-columns: repeat(1, 1fr);
-  }
-}
-
 footer .footer-bottom {
   background-color: #000;
   padding: 2rem;
@@ -415,4 +414,40 @@ footer .footer-bottom {
   color: #fff;
   font-size: 12px;
   text-align: center;
+}
+
+@media (max-width: 700px) {
+  .Name {
+    margin-top: 8vh;
+  }
+  nav {
+    float: right;
+    max-width: 100px;
+  }
+
+  nav li {
+    line-height: 2rem;
+  }
+
+  .projectBlock {
+    padding-left: 0;
+  }
+
+  .projects {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .projectItem {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .projectInfo .projectInfoList {
+    padding-top: 1rem;
+  }
+
+  footer .footer-bottom {
+    padding: 1rem;
+
+    font-size: 0.5rem;
+  }
 }

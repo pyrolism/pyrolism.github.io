@@ -313,6 +313,22 @@ figure.effect-lily:hover p {
 }
 
 /* Project Detail */
+.backBtn {
+  padding-top: 0.5rem;
+}
+
+.backBtn a {
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-decoration: none;
+  color: #150e31;
+  text-transform: uppercase;
+}
+
+.backBtn a i {
+  font-size: 0.8rem;
+}
 
 .projectItem {
   display: grid;
@@ -320,21 +336,38 @@ figure.effect-lily:hover p {
   grid-template-columns: 1fr 4fr;
 }
 
-.projectInfo {
-  padding-top: 5rem;
+.projectInfo .projectInfoList {
+  padding-top: 9rem;
 }
 
-.projectTitle {
+.projectBody {
 }
 
-.projectTitle h2 {
+.projectBody h2 {
   margin: 0;
   color: #150e31;
   letter-spacing: 0.1rem;
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: bolder;
   text-transform: uppercase;
+}
+
+.projectBody h3 {
+  margin: 0;
+  color: #8a869b;
+  letter-spacing: 0.1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  padding-top: 10px;
   padding-bottom: 30px;
+}
+
+.projectBody p {
+  margin: 0;
+  color: #150e31;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.8rem;
 }
 
 .projectInfo p {

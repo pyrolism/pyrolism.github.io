@@ -20,8 +20,10 @@
   </head>
   <body>
     <header>
-      <div>
-        <div class="Name"><a href="../index">ALLEN TSE</a></div>
+      <div class="navBar">
+        <div class="Name">
+          <a href="index"><span class="spA">A</span>LLEN TSE</a>
+        </div>
         <div id="Navi">
           <nav>
             <ul>
@@ -60,7 +62,9 @@
           <h2>Atlas of Movies</h2>
           <h3>Movie × Metro Map × Data Visualization</h3>
           <a href="../data-viz/index.html" class="btn">View the Project</a>
+          <img src="../img/projects/Atlas of Movies/project-img0.jpg" />
           <p>
+            <br />
             Data visualization is not only a science but also a form of art.
             Graph visualization always aims to present datasets in an effective
             and aesthetically appealing way. Besides statistical numbers, there
@@ -79,38 +83,45 @@
             as metro lines. The graph can illustrate the distribution of the
             genres of world's best movies.
           </p>
+          <br /><br />
+          <div class="small">(Click on the image to enlarge)</div>
+          <img
+            src="../img/projects/Atlas of Movies/project-imgD.png"
+            onclick="openModal();currentSlide(6)"
+            class="column"
+          />
           <!-- Images used to open the lightbox -->
           <div class="row">
             <div class="column">
               <img
-                src="../img/projects/project1/project-img.jpg"
+                src="../img/projects/Atlas of Movies/project-img.jpg"
                 onclick="openModal();currentSlide(1)"
               />
             </div>
             <div class="column">
               <img
-                src="../img/projects/project1/project-img2.jpg"
+                src="../img/projects/Atlas of Movies/project-img2.jpg"
                 onclick="openModal();currentSlide(2)"
                 class="hover-shadow"
               />
             </div>
             <div class="column">
               <img
-                src="../img/projects/project1/project-img3.jpg"
+                src="../img/projects/Atlas of Movies/project-img3.jpg"
                 onclick="openModal();currentSlide(3)"
                 class="hover-shadow"
               />
             </div>
             <div class="column">
               <img
-                src="../img/projects/project1/project-img4.jpg"
+                src="../img/projects/Atlas of Movies/project-img4.jpg"
                 onclick="openModal();currentSlide(4)"
                 class="hover-shadow"
               />
             </div>
             <div class="column">
               <img
-                src="../img/projects/project1/project-img5.jpg"
+                src="../img/projects/Atlas of Movies/project-img5.jpg"
                 onclick="openModal();currentSlide(5)"
                 class="hover-shadow"
               />
@@ -123,38 +134,40 @@
             <div class="modal-content">
               <div class="mySlides">
                 <img
-                  src="../img/projects/project1/project-imgLarge.jpg"
+                  src="../img/projects/Atlas of Movies/project-imgLarge.jpg"
                   style="width:100%"
                 />
               </div>
 
               <div class="mySlides">
                 <img
-                  src="../img/projects/project1/project-imgLarge2.jpg"
+                  src="../img/projects/Atlas of Movies/project-imgLarge2.jpg"
                   style="width:100%"
                 />
               </div>
 
               <div class="mySlides">
                 <img
-                  src="../img/projects/project1/project-imgLarge3.jpg"
+                  src="../img/projects/Atlas of Movies/project-imgLarge3.jpg"
                   style="width:100%"
                 />
               </div>
 
               <div class="mySlides">
                 <img
-                  src="../img/projects/project1/project-imgLarge4.jpg"
+                  src="../img/projects/Atlas of Movies/project-imgLarge4.jpg"
                   style="width:100%"
                 />
               </div>
               <div class="mySlides">
                 <img
-                  src="../img/projects/project1/project-imgLarge5.jpg"
+                  src="../img/projects/Atlas of Movies/project-imgLarge5.jpg"
                   style="width:100%"
                 />
               </div>
-
+              <div class="mySlides">
+                <img src="../img/projects/Atlas of Movies/project-imgD.png" />
+              </div>
               <!-- Next/previous controls -->
               <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
               <a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -178,6 +191,10 @@
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
       crossorigin="anonymous"
     ></script>
-    <script src="../js/main.js"></script>
+    <script
+      src="../js/main.js"
+      type="text/javascript"
+      language="JavaScript"
+    ></script>
   </body>
 </html>

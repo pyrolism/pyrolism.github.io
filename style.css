@@ -1,3 +1,8 @@
+@font-face {
+  font-family: AquaGrotesque;
+  src: url("font/aqua.ttf");
+}
+
 body {
   background-color: #fff;
 
@@ -8,6 +13,10 @@ body {
 }
 
 /* Navigation */
+.navBar {
+  width: 75vw;
+  margin: auto;
+}
 
 #Navi {
 }
@@ -15,8 +24,6 @@ body {
 .Name {
   position: absolute;
   margin-top: 50px;
-  margin-left: 12vw;
-
   padding-bottom: 8px;
 }
 
@@ -29,9 +36,15 @@ body {
   color: #150e31;
 }
 
+.Name a span {
+  font-family: "AquaGrotesque", sans-serif;
+
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
 nav {
   padding-top: 60px;
-  padding-right: 10vw;
   font-family: "Open Sans", sans-serif;
   letter-spacing: 2px;
   font-weight: bold;
@@ -45,7 +58,7 @@ nav ul {
 }
 
 nav li {
-  padding: 0px 25px;
+  padding: 0px 0px 0px 30px;
   float: right;
   list-style-type: none;
 }
@@ -170,7 +183,7 @@ nav a:focus:after {
 
 .projects {
   display: grid;
-  grid-gap: 0.2rem;
+  grid-gap: 0.5rem;
   grid-template-columns: repeat(3, 1fr);
 }
 
@@ -178,11 +191,7 @@ nav a:focus:after {
   position: relative;
   float: left;
   overflow: hidden;
-  margin: 5px 0;
-  min-width: 320px;
-  max-width: 480px;
-  max-height: 360px;
-  width: 48%;
+  margin: 0 0;
   text-align: center;
   cursor: pointer;
   background: #000;
@@ -380,11 +389,16 @@ figure.effect-lily:hover p {
   max-width: 100%;
 }
 
+.projectBody .small {
+  font-size: 0.8rem;
+  color: #8a869b;
+  text-align: center;
+}
+
 /* img light box */
 
 /* Create four equal columns that floats next to eachother */
 .row {
-  padding-top: 3rem;
 }
 
 .column {
@@ -399,7 +413,6 @@ figure.effect-lily:hover p {
   display: none;
   position: fixed;
   z-index: 1;
-  padding-top: 100px;
   left: 0;
   top: 0;
   width: 100%;
@@ -450,9 +463,9 @@ figure.effect-lily:hover p {
 /* Modal Content */
 .modal-content {
   position: relative;
-  margin: 0;
   padding: 0;
-  width: 100%;
+  top: 50vh;
+  margin-top: -250px;
 }
 
 /* The Close Button */
@@ -476,7 +489,17 @@ figure.effect-lily:hover p {
 
 /* Hide the slides by default */
 .mySlides {
+  text-align: center;
   display: none;
+
+  animation: fadein 0.5s;
+  -moz-animation: fadein 0.5s; /* Firefox */
+  -webkit-animation: fadein 0.5s; /* Safari and Chrome */
+  -o-animation: fadein 0.5s; /* Opera */
+}
+
+.mySlides img {
+  max-height: 500px;
 }
 
 /* Next & previous buttons */
@@ -563,7 +586,33 @@ footer .footer-bottom {
   text-align: center;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 1440px) {
+  .navBar {
+    width: 90vw;
+  }
+
+  .container {
+    width: 90vw;
+  }
+
+  .projects {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 750px) {
+  .navBar {
+    width: 80vw;
+  }
+
+  .container {
+    width: 80vw;
+  }
+
+  .modal-content {
+    margin-top: -10%;
+  }
+
   .Name {
     margin-top: 8vh;
   }

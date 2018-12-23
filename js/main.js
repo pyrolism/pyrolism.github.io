@@ -1,5 +1,15 @@
 /* Image LightBox*/
 
+document.onkeydown = function(event) {
+  var e = event || window.event || arguments.callee.caller.arguments[0];
+  if (e && e.keyCode == 37) {
+    plusSlides(-1);
+  }
+  if (e && e.keyCode == 39) {
+    plusSlides(1);
+  }
+};
+
 // Open the Modal
 function openModal() {
   document.getElementById("myModal").style.display = "block";
@@ -40,10 +50,5 @@ function showSlides(n) {
   for (i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";
   }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
   slides[slideIndex - 1].style.display = "block";
-  dots[slideIndex - 1].className += " active";
-  captionText.innerHTML = dots[slideIndex - 1].alt;
 }

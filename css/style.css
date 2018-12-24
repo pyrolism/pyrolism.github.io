@@ -600,27 +600,27 @@ img.demo {
   padding-bottom: 3rem;
 }
 
-.illustBlock .grid:after {
+.grid:after {
   content: "";
   display: block;
   clear: both;
 }
 
-.illustBlock .grid-sizer,
-.illustBlock .grid-item {
+.grid-sizer,
+.grid-item {
   width: 49%;
 }
 
-.illustBlock .gutter-sizer {
+.gutter-sizer {
   width: 1%;
 }
 
-.illustBlock .grid-item {
+.grid-item {
   float: left;
   margin-bottom: 1%;
 }
 
-.illustBlock .grid-item img {
+.grid-item img {
   display: block;
   max-width: 100%;
 }

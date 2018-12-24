@@ -200,8 +200,6 @@ nav a:focus:after {
 .projects figure img {
   position: relative;
   display: block;
-  min-height: 100%;
-  max-width: 100%;
   opacity: 0.8;
 }
 
@@ -345,19 +343,40 @@ figure.effect-lily:hover p {
 
 .projectItem {
   display: grid;
-  grid-gap: 5rem;
+  grid-column-gap: 5rem;
+
+  grid-row-gap: 3rem;
   grid-template-columns: 1fr 4fr;
 }
 
 .projectInfo .projectInfoList {
-  padding-top: 7rem;
+  margin-top: 0;
+}
+
+.projectInfo p {
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+
+.projectInfo p span {
+  font-weight: 800;
+}
+
+.projectInfo .line {
+  height: 1px;
+  background-color: #eee;
+  overflow: hidden;
 }
 
 .projectBody {
   padding-bottom: 3rem;
+  padding-top: 1rem;
 }
 
-.projectBody h2 {
+.projectTitle {
+}
+
+.projectTitle h2 {
   margin: 0;
   color: #150e31;
   letter-spacing: 0.1rem;
@@ -366,14 +385,13 @@ figure.effect-lily:hover p {
   text-transform: uppercase;
 }
 
-.projectBody h3 {
+.projectTitle h3 {
   margin: 0;
   color: #8a869b;
   letter-spacing: 0.1rem;
   font-size: 1rem;
   font-weight: 500;
   padding-top: 10px;
-  padding-bottom: 30px;
 }
 
 .projectBody p {
@@ -382,6 +400,12 @@ figure.effect-lily:hover p {
   font-size: 0.9rem;
   font-weight: 500;
   line-height: 1.8rem;
+}
+
+.projectBody p span {
+  font-size: 1.2rem;
+  font-weight: 800;
+  line-height: 3.6rem;
 }
 
 .projectBody img {
@@ -463,6 +487,7 @@ figure.effect-lily:hover p {
 /* Modal Content */
 .modal-content {
   position: relative;
+  margin: auto;
   padding: 0;
   top: 50vh;
   margin-top: -250px;
@@ -491,7 +516,6 @@ figure.effect-lily:hover p {
 .mySlides {
   text-align: center;
   display: none;
-
   animation: fadein 0.5s;
   -moz-animation: fadein 0.5s; /* Firefox */
   -webkit-animation: fadein 0.5s; /* Safari and Chrome */
@@ -534,6 +558,14 @@ figure.effect-lily:hover p {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
+/* Number text (1/3 etc) */
+.numbertext {
+  text-align: center;
+  padding: 20px;
+  font-size: 20px;
+  font-weight: 800;
+}
+
 /* Caption text */
 
 img.demo {
@@ -545,26 +577,11 @@ img.demo {
   opacity: 1;
 }
 
-.projectInfo p {
-  font-size: 0.9rem;
-  font-weight: 300;
-}
-
-.projectInfo p span {
-  font-weight: 800;
-}
-
-.projectInfo .line {
-  height: 1px;
-  background-color: #eee;
-  overflow: hidden;
-}
-
 .btn {
   padding: 0.5rem 2rem;
   border: 1px #ccc solid;
   display: inline-block;
-  margin: 2rem 0;
+  margin-bottom: 2rem;
   border-radius: 50px;
   text-decoration: none;
   color: #333;

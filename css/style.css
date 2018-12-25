@@ -811,6 +811,10 @@ img.demo {
   grid-template-columns: 1fr 2fr;
 }
 
+.translation .projectBody {
+  padding-top: 0;
+}
+
 .listitem .title {
   display: inline;
   font-size: 1.5rem;
@@ -847,6 +851,21 @@ footer .footer-bottom {
 
   .listitemInner {
     width: 100%;
+  }
+
+  .translation .projectItem {
+    grid-column-gap: 2rem;
+  }
+
+  .translation .tag {
+    padding: 5px;
+    font-size: 1pt;
+    letter-spacing: 0;
+  }
+
+  .translation .date {
+    margin-left: 5px;
+    font-size: 0.8rem;
   }
 }
 
@@ -930,6 +949,21 @@ footer .footer-bottom {
 
   .listitem .abstract {
     display: none;
+  }
+
+  .translation .projectItem {
+    grid-template-columns: 1fr;
+  }
+
+  .translation .tag {
+    padding: 5px;
+    font-size: 1pt;
+    letter-spacing: 0;
+  }
+
+  .translation .date {
+    margin-left: 5px;
+    font-size: 0.8rem;
   }
 
   footer .footer-bottom {

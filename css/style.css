@@ -15,7 +15,6 @@ body {
 .navBar {
   width: 75vw;
   margin: auto;
-  z-index: 101;
 }
 
 #Navi {
@@ -145,18 +144,18 @@ nav a:focus:after {
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
   background: white;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .loader.hidden {
-  animation: fadeOut 1s;
+  animation: fadeout 1s;
   animation-fill-mode: forwards;
 }
 
-@keyframes fadeOut {
+@keyframes fadeout {
   100% {
     opacity: 0;
     visibility: hidden;

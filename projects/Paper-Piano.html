@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="shortcut icon" href="../img/icon.png" type="image/x-icon" />
+    <title>Allen Tse | Computational Designer</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../css/animate.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+      integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:400,700"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="navBar">
+        <div class="Name">
+          <a href="../index"><span class="spA">A</span>LLEN TSE</a>
+        </div>
+        <div id="Navi">
+          <nav>
+            <ul>
+              <li><a href="#">About</a></li>
+              <li><a href="../others">Others</a></li>
+              <li><a href="#">Photography</a></li>
+
+              <li><a href="../illustration">ILLUSTRATION</a></li>
+              <li><a href="../projects">Projects</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <div class="loader">
+        <div class="spinner">
+          <svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+            <circle
+              class="length"
+              fill="none"
+              stroke-width="8"
+              stroke-linecap="round"
+              cx="33"
+              cy="33"
+              r="28"
+            ></circle>
+          </svg>
+          <svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+            <circle
+              fill="none"
+              stroke-width="8"
+              stroke-linecap="round"
+              cx="33"
+              cy="33"
+              r="28"
+            ></circle>
+          </svg>
+          <svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+            <circle
+              fill="none"
+              stroke-width="8"
+              stroke-linecap="round"
+              cx="33"
+              cy="33"
+              r="28"
+            ></circle>
+          </svg>
+          <svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+            <circle
+              fill="none"
+              stroke-width="8"
+              stroke-linecap="round"
+              cx="33"
+              cy="33"
+              r="28"
+            ></circle>
+          </svg>
+        </div>
+      </div>
+      <!-- <img src="img/20180405.gif" /> -->
+
+      <div class="projectItem">
+        <div class="backBtn" data-aos="fade-up">
+          <a href="../projects"
+            ><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Back</a
+          >
+        </div>
+        <div class="projectTitle" data-aos="fade-up">
+          <h2>Paper Piano</h2>
+          <h3>Using STM32 to Play Melody by Pencil and Paper</h3>
+        </div>
+        <div class="projectInfo" data-aos="fade-up">
+          <div class="projectInfoList">
+            <p><span>Category</span>: Embedded System Development</p>
+            <div class="line"></div>
+            <p><span>Project Type</span>: Group</p>
+            <div class="line"></div>
+            <p><span>Date</span>: December 2018 - January 2019</p>
+            <div class="line"></div>
+            <p><span>Role</span>: Coding, Building Hardware</p>
+          </div>
+        </div>
+        <div class="projectBody" data-aos="fade-up">
+          <video width="100%" controls>
+            <source
+              src="../img/projects/Paper Piano/demoVideo.mp4"
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
+          <p>
+            <br />
+            <span>Abstract</span><br />
+            This is a creative project of Embedded System Development. The
+            project used STM32 board as the microcontroller to build a simple
+            piano on paper.
+
+            <br />
+            <br />
+            <span>Material</span><br />
+            - STM32 Nucleo F401RE <br />
+            - 8 * 2.2m Ohms resistors <br />
+            - 1 * 8 Ohms speaker <br />
+            - 1 * breadboard <br />
+            - paper, pen, paper clips <br />
+            - several Dupont wires<br />
+            <br />
+            <span>How it works</span><br />
+            1.Capacity Sensor <br /><br />In this project, two I/O pins of MCU
+            are used to form a capacitive touch sensor. <br /><br />First of
+            all, the human body has a certain amount of capacitance. When two
+            I/O pins are connected to a conductive foil, the foil forms a basic
+            inductive touch area.When there is no finger contact, there is only
+            one capacitance
+            <img src="https://latex.codecogs.com/gif.latex?C_p" title="C_p" />
+            in the area. After touching with the finger, the human capacitance
+            <img src="https://latex.codecogs.com/gif.latex?C_f" title="C_f" /> is connected into the circuit. The change of the total
+            capacitance is as follows:<br><br> <img src="https://latex.codecogs.com/gif.latex?C_{current}=&space;C_f&plus;C_p" title="C_{current}= C_f+C_p" /><br><br> The two
+            pins are connected to a large resistance R (100k Ω - 50M Ω). The microcontroller uses one of them (the Send Pin) to produce square wave, measuring the charge
+            and discharge time constant &tau; = R * C of the RC circuit, then the current value
+            of capacitance between the pins. The other Pin is called Sensor Pin,
+            which is connected to the touch foil and changes the value of the
+            inductive capacitance. <br /><br />
+            </p>
+            <img src="../img/projects/Paper Piano/Wiring.jpg" />
+            <div class="small">Wiring of the System</div><br>
+            <p>
+            2.Generating Tone Signal <br /><br />
+            The PWM pin of STM32 is used to output the monophonic signal. The pin can be connected to the buzzer or the speaker to send out the monophonic audio signal. The monophonic signal is a pure sinusoidal signal of a single frequency.<br /><br />
+            PWM, or Pulse Width Modulation, is a very effective technology that USES the digital output of the microprocessor to control the analog circuit. It takes the pulse train with equal pulse width as PWM waveform, and the frequency can be modulated by changing the period of the pulse train, and the voltage can be modulated by changing the pulse width or duty cycle. In this project the duty cycle is set to 50%.<br /><br />
+        
+            3. Using Arduino IDE to Programme STM32 Boards <br /><br />Using the Arduino IDE for hardware development is very simple and convenient, the software encapsulates a lot of common methods and functions, making users able to focus on the implementation of ideas, but the resources and performance of Arduino series boards  are very limited. In this project, we use STM32 Nucleo F401RE, which originally requires various initialization, clock configuration and other operations in programming, but if we can program STM32 with Arduino IDE, a lot of effort will be saved. At present, enthusiasts have established a community to make STM32 series boards support Arduino IDE: <a href="http://stm32duino.com/" target="blank">http://stm32duino.com/</a>. The supported boards now cover the STM32F4 series used in this design, which means that we can control our boards through simple configuration, that is, using methods and functions provided by the Arduino community.
+            <br><br>
+            Details refer to: <a href="https://github.com/stm32duino/Arduino_Core_STM32" target="blank">https://github.com/stm32duino/Arduino_Core_STM32</a><br><br></p>
+            <img src="../img/projects/Paper Piano/Mapping.jpg" />
+            <div class="small">Mapping of the pinouts</div><br>
+            <img src="../img/projects/Paper Piano/projectImg1.jpg" />
+            <img src="../img/projects/Paper Piano/projectImg2.jpg" />
+            <img src="../img/projects/Paper Piano/projectImg3.jpg" />
+            <p>
+            <span>Reference</span><br />
+            1.	Paul Badger. Capacitive Sensing. <a href="https://playground.arduino.cc/Main/CapacitiveSensor?from=Main.CapSense" target="blank" >https://playground.arduino.cc/Main/CapacitiveSensor?from=Main.CapSense</a> .
+            <br>
+            2.	Ikhsan Ismail. Paper Piano with Arduino. <a href="https://playground.arduino.cc/Main/CapacitiveSensor?from=Main.CapSense" target="blank" >https://www.hackster.io/San_Ismail/paper-piano-with-arduino-e27da7</a> .
+            <br>
+            3.	. Arduino core support for STM32 based boards. 
+            <a href="https://github.com/stm32duino/Arduino_Core_STM32" target="blank" >https://github.com/stm32duino/Arduino_Core_STM32</a> .
+          </p>
+          
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-bottom">
+        Copyright &copy; 2019 Allen Tse All Right Reserved.
+      </div>
+    </footer>
+
+    <script
+      src="http://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script
+      src="../js/main.js"
+      type="text/javascript"
+      language="JavaScript"
+    ></script>
+  </body>
+</html>

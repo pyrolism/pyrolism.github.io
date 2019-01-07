@@ -504,6 +504,15 @@ figure.effect-lily:hover p {
   padding-top: 1rem;
 }
 
+.projectBody a {
+  text-decoration: none;
+  color: #150e31;
+}
+
+.projectBody a:hover {
+  color: #632edd;
+}
+
 .projectTitle {
 }
 
@@ -523,6 +532,7 @@ figure.effect-lily:hover p {
   font-size: 1rem;
   font-weight: 500;
   padding-top: 10px;
+  text-transform: capitalize;
 }
 
 .projectBody p {

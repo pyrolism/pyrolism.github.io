@@ -504,12 +504,12 @@ figure.effect-lily:hover p {
   padding-top: 1rem;
 }
 
-.projectBody .link a {
+.link {
   text-decoration: none;
   color: #150e31;
 }
 
-.projectBody .link a:hover {
+.link:hover {
   color: #632edd;
 }
 

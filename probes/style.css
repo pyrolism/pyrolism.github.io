@@ -1,0 +1,221 @@
+body {
+    background-color: #fff;
+    color: #222;
+    font-family: "Open Sans", sans-serif;
+    line-height: 2 em;
+    margin: 0;
+}
+
+.SNS {
+    height: 1334px;
+    width: 750px;
+    background-color: #fff;
+}
+
+.navbar {
+    background-color: #fafbfc;
+    display: grid;
+    grid-template-columns: 15% auto 15%;
+    align-items: center;
+    justify-items: center;
+}
+
+.username {
+    font-size: 1.5em;
+    text-decoration-line: underline;
+}
+
+::-webkit-input-placeholder {
+    color: #222;
+}
+
+.name-field {
+    width: 180px;
+    display: inline-block;
+    color: #222;
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: 600;
+    background-color: #fafbfc;
+    padding: .9em 1.8em;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: all .1s linear;
+}
+
+/* after button is clicked */
+.name-field.active {
+    width: 300px;
+    outline: none;
+    color: #222;
+    cursor: inherit;
+}
+
+.active::-webkit-input-placeholder {
+    color: #aaa;
+}
+
+.name-field:hover {
+    background-color: #eee;
+}
+
+.hamburger {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.bar1,
+.bar2,
+.bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: #333;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+.profile {
+    display: grid;
+    grid-template-columns: auto 20% 20% 20%;
+    gap: 10px;
+    align-items: center;
+    justify-items: center;
+}
+
+.profile h2 {
+    font-size: 32px;
+    margin: 0;
+}
+
+.profile p {
+    font-size: 24px;
+    color: #bbb;
+    margin: 0;
+}
+
+.profilePic {
+    grid-column: 1;
+    grid-row: 1/3;
+
+    transition: all 0.5s ease 0s;
+
+}
+
+.profilePic:hover {
+    opacity: 0.5;
+    cursor: pointer;
+
+    transition: all 0.5s ease 0s;
+}
+
+#profileInput {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+}
+
+.post {
+    text-align: center;
+}
+
+.followers {
+    text-align: center;
+}
+
+.following {
+    text-align: center;
+}
+
+.editProfile {
+    grid-column: 2/5;
+    grid-row: 2;
+    text-align: center;
+}
+
+.button {
+    border: 2px solid #ddd;
+    background-color: #fff;
+    padding: 10px 160px;
+    color: #222;
+    font-size: 1.2em;
+    text-decoration: none;
+    border-radius: 10px;
+
+    transition: all 0.5s ease 0s;
+}
+
+.button:hover {
+    background-color: #eee;
+    color: #000;
+    border: 2px solid #ccc;
+    transition: all 0.5s ease 0s;
+}
+
+.textProfile {
+    margin: 30px;
+    font-size: 30px;
+}
+
+.borderLine {
+    border: 0.5px solid #ddd;
+}
+
+.storyHighlights {
+    margin: 30px;
+}
+
+.storyHighlights p {
+    font-size: 23px;
+}
+
+.album {
+    margin: 10px;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    gap: 10px;
+}
+
+.item1 {
+    width: 240px;
+    height: 240px;
+    background-color: #eee;
+}
+
+.item2 {
+
+    width: 240px;
+    height: 240px;
+    background-color: #eee;
+}
+
+.item3 {
+
+    width: 240px;
+    height: 240px;
+    background-color: #eee;
+}
+
+.item4 {
+
+    width: 240px;
+    height: 240px;
+    background-color: #eee;
+}
+
+.item5 {
+
+    width: 240px;
+    height: 240px;
+    background-color: #eee;
+}
+
+.item6 {
+
+    width: 240px;
+    height: 240px;
+    background-color: #eee;
+}

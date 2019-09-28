@@ -99,7 +99,11 @@ body {
     grid-row: 1/3;
 
     transition: all 0.5s ease 0s;
-
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
 .profilePic:hover {
@@ -116,6 +120,16 @@ body {
     left: 0;
     right: 0;
     opacity: 0;
+}
+
+.profileNum {
+    display: inline-block;
+    text-align: center;
+    font-size: 32px;
+    outline: none;
+    border: none;
+    font-weight: 600;
+    width: 100px;
 }
 
 .post {
@@ -179,43 +193,65 @@ body {
     gap: 10px;
 }
 
-.item1 {
+
+.item {
     width: 240px;
     height: 240px;
-    background-color: #eee;
+    background-color: #fcfcfc;
+    transition: all 0.5s ease 0s;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.item2 {
-
-    width: 240px;
-    height: 240px;
-    background-color: #eee;
+.item:hover {
+    opacity: .5;
+    cursor: pointer;
 }
 
-.item3 {
-
+.preBlock {
+    display: block;
     width: 240px;
     height: 240px;
-    background-color: #eee;
+    left: 0;
+    top: 0;
 }
 
-.item4 {
-
-    width: 240px;
-    height: 240px;
-    background-color: #eee;
+.upload_input {
+    display: block;
+    width: 0;
+    height: 0;
+    -webkit-opacity: 0.0;
+    /* Netscape and Older than Firefox 0.9 */
+    -moz-opacity: 0.0;
+    /* Safari 1.x (pre WebKit!) 老式khtml内核的Safari浏览器*/
+    -khtml-opacity: 0.0;
+    /* IE9 + etc...modern browsers */
+    opacity: .0;
+    /* IE 4-9 */
+    filter: alpha(opacity=0);
+    /*This works in IE 8 & 9 too*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    /*IE4-IE9*/
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
 }
 
-.item5 {
-
-    width: 240px;
-    height: 240px;
-    background-color: #eee;
+.delete {
+    width: 30px;
+    position: absolute;
+    right: -30px;
+    top: -15px;
+    cursor: pointer;
+    display: none;
 }
 
-.item6 {
-
-    width: 240px;
-    height: 240px;
-    background-color: #eee;
+.itemInput {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
 }

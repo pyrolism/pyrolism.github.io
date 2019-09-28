@@ -18,6 +18,10 @@
         1.Enter your name.
         </br>
         2.Change your profile picture.
+        <br />
+        3.Edit your profile.
+        <br />
+        4.(optional)Upload photos to furthur represent yourself if you want.
     </p>
 
     <div class="SNS">
@@ -34,21 +38,33 @@
         </div>
         <div class="profile">
             <div class="profilePic">
+                <div class="item" style="background-color:#fff;">
+                    <img class="addImg" onclick="clickImg(this);" src="img/profile.png" style="width:240px;" />
+
+                    <div class="preBlock">
+                        <img class="preview" alt="" name="pic" />
+                    </div>
+                    <input name="url" type="file" class="upload_input" onchange="change(this)" />
+
+                    <img class="delete" onclick="deleteImg(this)" src="images/delete.png" />
+                </div>
+                <!--
                 <div style="position: relative;">
                     <input id="profileInput" type='file' onchange="readURL(this);" />
                     <img src="img/profile.png" id="profilePic" style="width:200px;">
                 </div>
+                -->
             </div>
             <div class="post">
-                <h2>800</h2>
+                <input class="profileNum" type="text" value="800">
                 <p>posts</p>
             </div>
             <div class="followers">
-                <h2>600</h2>
+                <input class="profileNum" type="text" value="600">
                 <p>followers</p>
             </div>
             <div class="following">
-                <h2>500</h2>
+                <input class="profileNum" type="text" value="500">
                 <p>following</p>
             </div>
             <div class="editProfile"><a href="#" class="button">
@@ -59,28 +75,71 @@
         <div class="emoji"></div>
         <div class="borderLine"></div>
         <div class="storyHighlights">
-            <p>Story Highlights</p>
+            <p><b>Story Highlights</b></p>
         </div>
         <div class="borderLine"></div>
         <div class="album">
-            <div class="item1">
-                <img src="img/addButton.png" style="width:100px; padding:70px;">
+            <div class="item">
+                <img class="addImg" onclick="clickImg(this);" src="img/addButton.png" style="width:240px;" />
+
+                <div class="preBlock">
+                    <img class="preview" alt="" name="pic" />
+                </div>
+                <input name="url" type="file" class="upload_input" onchange="change(this)" />
+
+                <img class="delete" onclick="deleteImg(this)" src="images/delete.png" />
             </div>
-            <div class="item2">
-                <img src="img/addButton.png" style="width:100px; padding:70px;">
+            <div class="item">
+                <img class="addImg" onclick="clickImg(this);" src="img/addButton.png" style="width:240px;" />
+
+                <div class="preBlock">
+                    <img class="preview" alt="" name="pic" />
+                </div>
+                <input name="url" type="file" class="upload_input" onchange="change(this)" />
+
+                <img class="delete" onclick="deleteImg(this)" src="images/delete.png" />
             </div>
-            <div class="item3">
-                <img src="img/addButton.png" style="width:100px; padding:70px;">
+            <div class="item">
+                <img class="addImg" onclick="clickImg(this);" src="img/addButton.png" style="width:240px;" />
+
+                <div class="preBlock">
+                    <img class="preview" alt="" name="pic" />
+                </div>
+                <input name="url" type="file" class="upload_input" onchange="change(this)" />
+
+                <img class="delete" onclick="deleteImg(this)" src="images/delete.png" />
             </div>
-            <div class="item4">
-                <img src="img/addButton.png" style="width:100px; padding:70px;">
+            <div class="item">
+                <img class="addImg" onclick="clickImg(this);" src="img/addButton.png" style="width:240px;" />
+
+                <div class="preBlock">
+                    <img class="preview" alt="" name="pic" />
+                </div>
+                <input name="url" type="file" class="upload_input" onchange="change(this)" />
+
+                <img class="delete" onclick="deleteImg(this)" src="images/delete.png" />
             </div>
-            <div class="item5">
-                <img src="img/addButton.png" style="width:100px; padding:70px;">
+            <div class="item">
+                <img class="addImg" onclick="clickImg(this);" src="img/addButton.png" style="width:240px;" />
+
+                <div class="preBlock">
+                    <img class="preview" alt="" name="pic" />
+                </div>
+                <input name="url" type="file" class="upload_input" onchange="change(this)" />
+
+                <img class="delete" onclick="deleteImg(this)" src="images/delete.png" />
             </div>
-            <div class="item6">
-                <img src="img/addButton.png" style="width:100px; padding:70px;">
+            <div class="item">
+                <img class="addImg" onclick="clickImg(this);" src="img/addButton.png" style="width:240px;" />
+
+                <div class="preBlock">
+                    <img class="preview" alt="" name="pic" />
+                </div>
+                <input name="url" type="file" class="upload_input" onchange="change(this)" />
+
+                <img class="delete" onclick="deleteImg(this)" src="images/delete.png" />
             </div>
+
         </div>
         <div class="bottomNav"></div>
     </div>

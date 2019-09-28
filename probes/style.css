@@ -99,7 +99,7 @@ body {
     grid-row: 1/3;
 
     transition: all 0.5s ease 0s;
-    height: 200px;
+    height: 240px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -168,6 +168,206 @@ body {
     border: 2px solid #ccc;
     transition: all 0.5s ease 0s;
 }
+
+button {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    vertical-align: middle;
+    text-decoration: none;
+    background: transparent;
+    padding: 0;
+    font-size: inherit;
+    font-family: inherit;
+}
+
+button.learn-more {
+    width: 12rem;
+    height: auto;
+}
+
+button.learn-more .circle {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: relative;
+    margin: 0;
+    width: 3rem;
+    height: 3rem;
+    background: #282936;
+    border-radius: 1.625rem;
+}
+
+button.learn-more .circle .icon {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background: #fff;
+}
+
+button.learn-more .circle .icon.arrow {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    left: 0.625rem;
+    width: 1.125rem;
+    height: 0.125rem;
+    background: none;
+}
+
+button.learn-more .circle .icon.arrow::before {
+    position: absolute;
+    content: '';
+    top: -0.25rem;
+    right: 0.0625rem;
+    width: 0.625rem;
+    height: 0.625rem;
+    border-top: 0.125rem solid #fff;
+    border-right: 0.125rem solid #fff;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+button.learn-more .button-text {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0.75rem 0;
+    margin: 0 0 0 1.85rem;
+    color: #282936;
+    font-weight: 700;
+    line-height: 1.6;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+button:hover .circle {
+    width: 100%;
+}
+
+button:hover .circle .icon.arrow {
+    background: #fff;
+    -webkit-transform: translate(1rem, 0);
+    transform: translate(1rem, 0);
+}
+
+button:hover .button-text {
+    color: #fff;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    padding: 10px 40px;
+    width: 400px;
+    left: 50%;
+    margin-left: -250px;
+    height: 300px;
+    top: 50%;
+    margin-top: -100px;
+    background: #FFF;
+    z-index: 20;
+}
+
+#popup1:after {
+    position: fixed;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -2;
+}
+
+#popup1:before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #FFF;
+    z-index: -1;
+}
+
+.inpWrapper {
+    display: flex;
+    padding-top: 10px;
+}
+
+.inp {
+    position: relative;
+    margin: 0;
+    width: 100%;
+    max-width: 400px;
+}
+
+.inp .label {
+    position: absolute;
+    top: 16px;
+    left: 0;
+    font-size: 16px;
+    color: #9098a9;
+    font-weight: 500;
+    transform-origin: 0 0;
+    transition: all 0.2s ease;
+}
+
+.inp .border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background: #07f;
+    transform: scaleX(0);
+    transform-origin: 0 0;
+    transition: all 0.15s ease;
+}
+
+.inp input {
+    -webkit-appearance: none;
+    width: 100%;
+    border: 0;
+    font-family: inherit;
+    padding: 12px 0;
+    height: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 2px solid #c8ccd4;
+    background: none;
+    border-radius: 0;
+    color: #223254;
+    transition: all 0.15s ease;
+}
+
+.inp input:hover {
+    background: rgba(34, 50, 84, 0.03);
+}
+
+.inp input:not(:placeholder-shown)+span {
+    color: #5a667f;
+    transform: translateY(-26px) scale(0.75);
+}
+
+.inp input:focus {
+    background: none;
+    outline: none;
+}
+
+.inp input:focus+span {
+    color: #07f;
+    transform: translateY(-26px) scale(0.75);
+}
+
+.inp input:focus+span+.border {
+    transform: scaleX(1);
+}
+
 
 .textProfile {
     margin: 30px;

@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="lib/css/emoji.css" rel="stylesheet">
+    <link rel="stylesheet" href="lib/css/emojionearea.min.css">
     <title>Profile Builder</title>
 </head>
 
@@ -56,7 +59,7 @@
                 -->
             </div>
             <div class="post">
-                <input class="profileNum" type="text" value="800">
+                <input class="profileNum" type="text" value="6">
                 <p>posts</p>
             </div>
             <div class="followers">
@@ -67,12 +70,37 @@
                 <input class="profileNum" type="text" value="500">
                 <p>following</p>
             </div>
-            <div class="editProfile"><a href="#" class="button">
+            <div class="editProfile"><a href="#" onclick="show('popup1')" class="button">
                     <b>Edit Profile</b>
                 </a></div>
         </div>
-        <div class="textProfile">Edit your profile</div>
+        <div class="popup" id="popup1">
+            <h2>Edit Profile</h2>
+            <!--
+            <div class="inpWrapper">
+                <label for="inp" class="inp">
+                    <input type="text" id="inp" placeholder="&nbsp;">
+                    <span class="label">Describe Yourself</span>
+                    <span class="border"></span>
+                </label>
+            </div>
+            -->
+            <textarea id="inp"></textarea>
+            <p style="font-size:0.8em;color:#9098a9;">You need to select at least 4 emojis</p>
+            <div style="padding-top:10px;">
+                <button class="learn-more" onclick="hide('popup1');showValue()">
+                    <div class="circle">
+                        <span class="icon arrow"></span>
+                    </div>
+                    <p class="button-text">Submit</p>
+                </button>
+            </div>
+
+        </div>
+
+        <div class="textProfile" id="textProfile"></div>
         <div class="emoji"></div>
+
         <div class="borderLine"></div>
         <div class="storyHighlights">
             <p><b>Story Highlights</b></p>
@@ -142,11 +170,24 @@
 
         </div>
         <div class="bottomNav"></div>
+
     </div>
+
     <script src="http://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
+
     <script src="js/main.js" type="text/javascript" language="JavaScript"></script>
+    <script type="text/javascript" src="lib/js/emojionearea.min.js"></script>
+    <script src="lib/js/config.js"></script>
+    <script src="lib/js/util.js"></script>
+    <script src="lib/js/jquery.emojiarea.js"></script>
+    <script src="lib/js/emoji-picker.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#inp").emojioneArea();
+        });
+    </script>
 </body>
 
 </html>

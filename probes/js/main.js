@@ -1,3 +1,30 @@
+/*
+$ = function (id) {
+    return document.getElementById(id);
+}
+
+var show = function (id) {
+    $(id).style.display = 'block';
+}
+var hide = function (id) {
+    $(id).style.display = 'none';
+}
+*/
+
+
+function show(id) {
+    document.getElementById(id).style.display = 'block';
+}
+
+function hide(id) {
+    document.getElementById(id).style.display = 'none';
+}
+
+function showValue() {
+    var name = document.getElementById('inp').value;
+    document.getElementById('textProfile').innerHTML = name;
+}
+
 // remap jQuery to $
 (function ($) {
 

@@ -13,20 +13,31 @@
 </head>
 
 <body>
-    <h1>Probe 3 - Profile Builder</h1>
-    <p>In this section, we want you to design your own profile using only emojis. Which emojis will you choose to
-        express yourself?</p>
-    <p>係這個環節，你需要使用Emoji來搭建你自己的主頁。你會如何表達自己？
-        </br>
-        1.Enter your name.
-        </br>
-        2.Change your profile picture.
-        <br />
-        3.Edit your profile.
-        <br />
-        4.(optional)Upload photos to furthur represent yourself if you want.
-    </p>
+    <div class="instruction">
+        <h3 style="font-weight:400; margin:0;">CULTURAL PROBE</h3>
+        <h1 style="font-size:75px; font-weight:800; margin:0;">Profile Builder</h1>
+        <p>In this section, we want you to design your own profile using only emojis. Which emojis will you choose to
+            express yourself?</p>
+        <p>係這個環節，你需要使用Emoji來搭建你自己的主頁。你會如何表達自己？
+            </br>
+            1.Enter your name.
+            </br>
+            2.Change your profile picture.
+            <br />
+            3.Edit your profile (with emojis).
+            <br />
+            4.(optional)Upload photos to furthur represent yourself if you want.
+        </p>
+    </div>
 
+    <div class="selectAvatar">
+        <div class="onlineAvatar">
+            <input type="image" src="img/girl-avatar.png" style="width:100px;" />
+            <input type="image" src="img/boy-avatar-bw.png" style="width:100px;" />
+            <input type="image" src="img/anomynous-avatar-bw.png" style="width:100px;">
+        </div>
+
+    </div>
     <div class="SNS">
         <div class="navbar">
             <div class="icon"><img src="img/time-lapse.svg" style="width:40px;"></div>
@@ -42,7 +53,8 @@
         <div class="profile">
             <div class="profilePic">
                 <div class="item" style="background-color:#fff;">
-                    <img class="addImg" onclick="clickImg(this);" src="img/profile.png" style="width:240px;" />
+                    <img src="img/profile-mask.png" onclick="clickImg(this);" alt="" style="position:absolute;">
+                    <img class="addImg" src="img/profile.png" style="height:100%; width:100%;object-fit:cover;" />
 
                     <div class="preBlock">
                         <img class="preview" alt="" name="pic" />
@@ -104,6 +116,11 @@
         <div class="borderLine"></div>
         <div class="storyHighlights">
             <p><b>Story Highlights</b></p>
+        </div>
+        <div class="borderLine"></div>
+        <div class="galleryIcon">
+            <img src="img/icon1.png" alt="" style="width:80px;">
+            <img src="img/icon2.png" alt="" style="width:80px;">
         </div>
         <div class="borderLine"></div>
         <div class="album">
@@ -169,7 +186,13 @@
             </div>
 
         </div>
-        <div class="bottomNav"></div>
+        <div class="bottomNav">
+            <img src="img/icon3.png" alt="" style="width:60px;">
+            <img src="img/icon4.png" alt="" style="width:60px;">
+            <img src="img/icon5.png" alt="" style="width:60px;">
+            <img src="img/icon6.png" alt="" style="width:60px;">
+            <img src="img/icon7.png" alt="" class="addImg" style="width:60px;">
+        </div>
 
     </div>
 

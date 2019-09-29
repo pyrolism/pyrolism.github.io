@@ -6,6 +6,14 @@ body {
     margin: 0;
 }
 
+.instruction {
+    padding: 20px 40px;
+}
+
+.instruction p {
+    font-size: 0.8em;
+}
+
 .SNS {
     height: 1334px;
     width: 750px;
@@ -386,11 +394,19 @@ button:hover .button-text {
     font-size: 23px;
 }
 
+.galleryIcon {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+    justify-items: center;
+}
+
 .album {
     margin: 10px;
     display: grid;
-    grid-template-columns: 33% 33% 33%;
-    gap: 10px;
+    grid-template-columns: 33.3% 33.3% 33.3%;
+    row-gap: 10px;
+    column-gap: 10px;
 }
 
 
@@ -454,4 +470,16 @@ button:hover .button-text {
     left: 0;
     right: 0;
     opacity: 0;
+}
+
+.bottomNav {
+    position: fixed;
+    bottom: 0;
+    background: #fff;
+    height: 100px;
+    width: 750px;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    align-items: center;
+    justify-items: center;
 }

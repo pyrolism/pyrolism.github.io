@@ -11,7 +11,6 @@ var hide = function (id) {
 }
 */
 
-
 function show(id) {
     document.getElementById(id).style.display = 'block';
 }
@@ -137,3 +136,42 @@ function html5Reader(file, pic, addImg, deleteImg) {
     addImg.hide();
     deleteImg.show();
 }
+
+function girlAvatar() {
+    document.getElementById("girlAvatarOn").style.display = 'inline';
+    document.getElementById("girlAvatarOff").style.display = 'none';
+    document.getElementById("boyAvatarOn").style.display = 'none';
+    document.getElementById("boyAvatarOff").style.display = 'inline';
+    document.getElementById("offlineAvatarOn").style.display = 'none';
+    document.getElementById("offlineAvatarOff").style.display = 'inline';
+
+    document.getElementById("onlineSelf").style.display = 'inline';
+    document.getElementById("offlineSelf").style.display = 'none';
+};
+
+function boyAvatar() {
+    document.getElementById("girlAvatarOn").style.display = 'none';
+    document.getElementById("girlAvatarOff").style.display = 'inline';
+    document.getElementById("boyAvatarOn").style.display = 'inline';
+    document.getElementById("boyAvatarOff").style.display = 'none';
+    document.getElementById("offlineAvatarOn").style.display = 'none';
+    document.getElementById("offlineAvatarOff").style.display = 'inline';
+
+    document.getElementById("onlineSelf").style.display = 'inline';
+    document.getElementById("offlineSelf").style.display = 'none';
+};
+
+function offlineAvatar() {
+    document.getElementById("girlAvatarOn").style.display = 'none';
+    document.getElementById("girlAvatarOff").style.display = 'inline';
+    document.getElementById("boyAvatarOn").style.display = 'none';
+    document.getElementById("boyAvatarOff").style.display = 'inline';
+    document.getElementById("offlineAvatarOn").style.display = 'inline';
+    document.getElementById("offlineAvatarOff").style.display = 'none';
+
+
+    document.getElementById("onlineSelf").style.display = 'none';
+    document.getElementById("offlineSelf").style.display = 'inline';
+    menu(this)
+    /*$('.SNS').css("background-color", "#333639")*/
+};

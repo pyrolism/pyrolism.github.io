@@ -6,17 +6,66 @@ body {
     margin: 0;
 }
 
+.well {
+    position: relative;
+    overflow: hidden;
+    transition: 1s cubic-bezier(0.5, 0, 0.5, 1);
+}
+
+.top {
+    font-size: 80%;
+    color: hsla(0, 0%, 100%, .25);
+    position: relative;
+    top: -.2em;
+    cursor: pointer;
+}
+
+.panel {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+
 .instruction {
-    padding: 20px 40px;
+    padding: 100px 40px;
+    height: 100vh;
 }
 
 .instruction p {
-    font-size: 0.8em;
+    font-size: 0.9em;
+    line-height: 2em;
+}
+
+.selectAvatar {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    z-index: 30;
+    width: 100vw;
+    text-align: center;
+}
+
+#girlAvatarOff {
+    display: none;
+}
+
+#boyAvatarOn {
+    display: none;
+}
+
+#offlineAvatarOn {
+    display: none;
+}
+
+#offlineSelf {
+    display: none;
 }
 
 .SNS {
     height: 1334px;
-    width: 750px;
+    width: 100vw;
     background-color: #fff;
 }
 
@@ -26,6 +75,10 @@ body {
     grid-template-columns: 15% auto 15%;
     align-items: center;
     justify-items: center;
+}
+
+.icon-img {
+    width: 40px;
 }
 
 .username {
@@ -83,6 +136,20 @@ body {
     transition: 0.4s;
 }
 
+.change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+    transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.change .bar2 {
+    opacity: 0;
+}
+
+.change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px);
+    transform: rotate(45deg) translate(-8px, -8px);
+}
+
 .profile {
     display: grid;
     grid-template-columns: auto 20% 20% 20%;
@@ -119,6 +186,11 @@ body {
     cursor: pointer;
 
     transition: all 0.5s ease 0s;
+}
+
+.profilePic .item {
+    width: 240px;
+    height: 240px;
 }
 
 #profileInput {
@@ -401,18 +473,21 @@ button:hover .button-text {
     justify-items: center;
 }
 
+.galleryIcon img {
+    width: 80px;
+}
+
 .album {
-    margin: 10px;
+    margin: 0.3vw;
     display: grid;
-    grid-template-columns: 33.3% 33.3% 33.3%;
-    row-gap: 10px;
-    column-gap: 10px;
+    grid-template-columns: 33% 33% 33%;
+    row-gap: 1vw;
+    column-gap: 1vw;
 }
 
 
+
 .item {
-    width: 240px;
-    height: 240px;
     background-color: #fcfcfc;
     transition: all 0.5s ease 0s;
     overflow: hidden;
@@ -425,6 +500,11 @@ button:hover .button-text {
 .item:hover {
     opacity: .5;
     cursor: pointer;
+}
+
+.album .item {
+    width: 33.3vw;
+    height: 33.3vw;
 }
 
 .preBlock {
@@ -473,13 +553,140 @@ button:hover .button-text {
 }
 
 .bottomNav {
-    position: fixed;
-    bottom: 0;
+    padding-top: 20px;
     background: #fff;
-    height: 100px;
-    width: 750px;
+    height: 80px;
+    width: 100vw;
     display: grid;
     grid-template-columns: 20% 20% 20% 20% 20%;
     align-items: center;
     justify-items: center;
+}
+
+.bottomNav img {
+    width: 60px;
+}
+
+@media (max-width: 750px) {
+    .SNS {
+        width: 100vw;
+    }
+
+    .navbar {
+        grid-template-columns: 20% auto 20%;
+    }
+
+    .icon-img {
+        width: 30px;
+    }
+
+    .name-field {
+        font-size: 0.8em;
+        width: 150px;
+    }
+
+    .name-field.active {
+        width: 150px;
+    }
+
+
+    .bar1,
+    .bar2,
+    .bar3 {
+        width: 28px;
+        height: 4px;
+        background-color: #333;
+        margin: 5px 0;
+        transition: 0.4s;
+    }
+
+    .change .bar1 {
+        -webkit-transform: rotate(-45deg) translate(-8px, 6px);
+        transform: rotate(-45deg) translate(-8px, 6px);
+    }
+
+    .change .bar2 {
+        opacity: 0;
+    }
+
+    .change .bar3 {
+        -webkit-transform: rotate(45deg) translate(-6px, -6px);
+        transform: rotate(45deg) translate(-6px, -6px);
+    }
+
+    .profilePic {
+        height: 120px;
+    }
+
+    .profilePic .item {
+        width: 120px;
+        height: 120px;
+    }
+
+    .mask-img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .profileNum {
+
+        font-size: 1.2em;
+
+        font-weight: 600;
+    }
+
+    .post p {
+        font-size: 0.8em;
+    }
+
+    .followers p {
+        font-size: 0.8em;
+    }
+
+    .following p {
+        font-size: 0.8em;
+    }
+
+    .button {
+        border: 1px solid #ddd;
+        background-color: #fff;
+        padding-left: 20vw;
+        padding-right: 20vw;
+        padding-top: 2vw;
+        padding-bottom: 2vw;
+        font-size: 0.9em;
+    }
+
+    .button:hover {
+
+        border: 1px solid #ccc;
+    }
+
+    .storyHighlights p {
+        font-size: 1em;
+    }
+
+    .galleryIcon img {
+        width: 60px;
+    }
+
+    .popup {
+        padding: 10px 40px;
+        width: 250px;
+        left: 50%;
+        margin-left: -175px;
+        height: 300px;
+        top: 50%;
+        margin-top: -100px;
+        background: #FFF;
+        z-index: 20;
+    }
+
+    .textProfile {
+        font-size: 1.3em;
+    }
+
+    .bottomNav img {
+        width: 45px;
+    }
 }

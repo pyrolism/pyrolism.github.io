@@ -13,6 +13,13 @@
 </head>
 
 <body>
+    <!--
+    <div class="well" id="well">
+        <div class="panel"></div>
+        <div class="panel"></div>
+    </div>
+    -->
+
     <div class="instruction">
         <h3 style="font-weight:400; margin:0;">CULTURAL PROBE</h3>
         <h1 style="font-size:75px; font-weight:800; margin:0;">Profile Builder</h1>
@@ -30,31 +37,119 @@
         </p>
     </div>
 
-    <div class="selectAvatar">
-        <div class="onlineAvatar">
-            <input type="image" src="img/girl-avatar.png" style="width:100px;" />
-            <input type="image" src="img/boy-avatar-bw.png" style="width:100px;" />
-            <input type="image" src="img/anomynous-avatar-bw.png" style="width:100px;">
-        </div>
 
-    </div>
     <div class="SNS">
         <div class="navbar">
-            <div class="icon"><img src="img/time-lapse.svg" style="width:40px;"></div>
+            <div class="icon"><img class="icon-img" src="img/time-lapse.svg"></div>
             <div class="username">
                 <input type="text" class="name-field" placeholder="Who Are You?">
             </div>
-            <div class="hamburger">
+            <div class="hamburger" onclick="menu(this)">
                 <div class="bar1"></div>
                 <div class="bar2"></div>
                 <div class="bar3"></div>
             </div>
         </div>
-        <div class="profile">
-            <div class="profilePic">
-                <div class="item" style="background-color:#fff;">
-                    <img src="img/profile-mask.png" onclick="clickImg(this);" alt="" style="position:absolute;">
-                    <img class="addImg" src="img/profile.png" style="height:100%; width:100%;object-fit:cover;" />
+        <div class="selectAvatar">
+            <h4>Select from the following</h4>
+            <h2>The avatar of you</h2>
+            <div class="onlineAvatar" style="display:inline;">
+                <input id="girlAvatarOn" type="image" src="img/girl-avatar.png" onclick="girlAvatar();"
+                    style="width:100px;" />
+                <input id="girlAvatarOff" type="image" src="img/girl-avatar-bw.png" onclick="girlAvatar();"
+                    style="width:100px;" />
+                <input id="boyAvatarOn" type="image" src="img/boy-avatar.png" onclick="boyAvatar();" style="
+                            width:100px;" />
+                <input id="boyAvatarOff" type="image" src="img/boy-avatar-bw.png" onclick="boyAvatar();"
+                    style="width:100px;" />
+            </div>
+
+            <h2>The real you</h2>
+            <div class="offlineAvatar">
+                <input id="offlineAvatarOn" type="image" src="img/anomynous-avatar.png" style="width:100px;">
+                <input id="offlineAvatarOff" type="image" src="img/anomynous-avatar-bw.png" onclick="offlineAvatar();"
+                    style="width:100px;">
+            </div>
+        </div>
+        <div id="onlineSelf">
+            <div class="profile">
+                <div class="profilePic">
+                    <div class="item" style="background-color:#fff;">
+                        <img class="mask-img" src="img/profile-mask.png" onclick="clickImg(this);" alt=""
+                            style="position:absolute;">
+                        <img class="addImg" src="img/profile.png" style="height:100%; width:100%;object-fit:cover;" />
+
+                        <div class="preBlock">
+                            <img class="preview" alt="" name="pic" />
+                        </div>
+                        <input name="url" type="file" class="upload_input" onchange="change(this)" />
+
+                        <img class="delete" onclick="deleteImg(this)" src="images/delete.png" />
+                    </div>
+                    <!--
+                            <div style="position: relative;">
+                                <input id="profileInput" type='file' onchange="readURL(this);" />
+                                <img src="img/profile.png" id="profilePic" style="width:200px;">
+                            </div>
+                            -->
+                </div>
+                <div class="post">
+                    <input class="profileNum" type="text" value="6">
+                    <p>posts</p>
+                </div>
+                <div class="followers">
+                    <input class="profileNum" type="text" value="600">
+                    <p>followers</p>
+                </div>
+                <div class="following">
+                    <input class="profileNum" type="text" value="500">
+                    <p>following</p>
+                </div>
+                <div class="editProfile"><a href="#SNS" onclick="show('popup1')" class="button">
+                        <b>Edit Profile</b>
+                    </a></div>
+            </div>
+            <div class="popup" id="popup1">
+                <h2>Edit Profile</h2>
+                <!--
+                        <div class="inpWrapper">
+                            <label for="inp" class="inp">
+                                <input type="text" id="inp" placeholder="&nbsp;">
+                                <span class="label">Describe Yourself</span>
+                                <span class="border"></span>
+                            </label>
+                        </div>
+                        -->
+                <textarea id="inp"></textarea>
+                <p style="font-size:0.8em;color:#9098a9;">You need to select at least 4 emojis</p>
+                <div style="padding-top:10px;">
+                    <button class="learn-more" onclick="hide('popup1');showValue()">
+                        <div class="circle">
+                            <span class="icon arrow"></span>
+                        </div>
+                        <p class="button-text">Submit</p>
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="textProfile" id="textProfile"></div>
+            <div class="emoji"></div>
+
+            <div class="borderLine"></div>
+            <div class="storyHighlights">
+                <p><b>Story Highlights</b></p>
+            </div>
+            <div class="borderLine"></div>
+            <div class="galleryIcon">
+                <img src="img/icon1.png" alt="">
+                <img src="img/icon2.png" alt="">
+            </div>
+            <div class="borderLine"></div>
+            <div class="album">
+                <div class="item">
+                    <img class="addImg" onclick="clickImg(this);" src="img/addButton.png"
+                        style="height:100%; width:100%;object-fit:cover;" />
 
                     <div class="preBlock">
                         <img class="preview" alt="" name="pic" />
@@ -63,138 +158,228 @@
 
                     <img class="delete" onclick="deleteImg(this)" src="images/delete.png" />
                 </div>
-                <!--
-                <div style="position: relative;">
-                    <input id="profileInput" type='file' onchange="readURL(this);" />
-                    <img src="img/profile.png" id="profilePic" style="width:200px;">
-                </div>
-                -->
-            </div>
-            <div class="post">
-                <input class="profileNum" type="text" value="6">
-                <p>posts</p>
-            </div>
-            <div class="followers">
-                <input class="profileNum" type="text" value="600">
-                <p>followers</p>
-            </div>
-            <div class="following">
-                <input class="profileNum" type="text" value="500">
-                <p>following</p>
-            </div>
-            <div class="editProfile"><a href="#" onclick="show('popup1')" class="button">
-                    <b>Edit Profile</b>
-                </a></div>
-        </div>
-        <div class="popup" id="popup1">
-            <h2>Edit Profile</h2>
-            <!--
-            <div class="inpWrapper">
-                <label for="inp" class="inp">
-                    <input type="text" id="inp" placeholder="&nbsp;">
-                    <span class="label">Describe Yourself</span>
-                    <span class="border"></span>
-                </label>
-            </div>
-            -->
-            <textarea id="inp"></textarea>
-            <p style="font-size:0.8em;color:#9098a9;">You need to select at least 4 emojis</p>
-            <div style="padding-top:10px;">
-                <button class="learn-more" onclick="hide('popup1');showValue()">
-                    <div class="circle">
-                        <span class="icon arrow"></span>
+                <div class="item">
+                    <img class="addImg" onclick="clickImg(this);" src="img/addButton.png"
+                        style="height:100%; width:100%;object-fit:cover;" />
+
+                    <div class="preBlock">
+                        <img class="preview" alt="" name="pic" />
                     </div>
-                    <p class="button-text">Submit</p>
-                </button>
-            </div>
+                    <input name="url" type="file" class="upload_input" onchange="change(this)" />
 
+                    <img class="delete" onclick="deleteImg(this)" src="images/delete.png" />
+                </div>
+                <div class="item">
+                    <img class="addImg" onclick="clickImg(this);" src="img/addButton.png"
+                        style="height:100%; width:100%;object-fit:cover;" />
+
+                    <div class="preBlock">
+                        <img class="preview" alt="" name="pic" />
+                    </div>
+                    <input name="url" type="file" class="upload_input" onchange="change(this)" />
+
+                    <img class="delete" onclick="deleteImg(this)" src="images/delete.png" />
+                </div>
+                <div class="item">
+                    <img class="addImg" onclick="clickImg(this);" src="img/addButton.png"
+                        style="height:100%; width:100%;object-fit:cover;" />
+
+                    <div class="preBlock">
+                        <img class="preview" alt="" name="pic" />
+                    </div>
+                    <input name="url" type="file" class="upload_input" onchange="change(this)" />
+
+                    <img class="delete" onclick="deleteImg(this)" src="images/delete.png" />
+                </div>
+                <div class="item">
+                    <img class="addImg" onclick="clickImg(this);" src="img/addButton.png"
+                        style="height:100%; width:100%;object-fit:cover;" />
+
+                    <div class="preBlock">
+                        <img class="preview" alt="" name="pic" />
+                    </div>
+                    <input name="url" type="file" class="upload_input" onchange="change(this)" />
+
+                    <img class="delete" onclick="deleteImg(this)" src="images/delete.png" />
+                </div>
+                <div class="item">
+                    <img class="addImg" onclick="clickImg(this);" src="img/addButton.png"
+                        style="height:100%; width:100%;object-fit:cover;" />
+
+                    <div class="preBlock">
+                        <img class="preview" alt="" name="pic" />
+                    </div>
+                    <input name="url" type="file" class="upload_input" onchange="change(this)" />
+
+                    <img class="delete" onclick="deleteImg(this)" src="images/delete.png" />
+                </div>
+
+            </div>
+            <div class="bottomNav">
+                <img src="img/icon3.png" alt="">
+                <img src="img/icon4.png" alt="">
+                <img src="img/icon5.png" alt="">
+                <img src="img/icon6.png" alt="">
+                <img src="img/icon7.png" alt="">
+            </div>
         </div>
+        <div id="offlineSelf">
+            <div class="profile">
+                <div class="profilePic">
+                    <div class="item" style="background-color:#fff;">
+                        <img class="mask-img" src="img/profile-mask.png" onclick="clickImg(this);" alt=""
+                            style="position:absolute;">
+                        <img class="addImg" src="img/profile.png" style="height:100%; width:100%;object-fit:cover;" />
 
-        <div class="textProfile" id="textProfile"></div>
-        <div class="emoji"></div>
+                        <div class="preBlock">
+                            <img class="preview" alt="" name="pic" />
+                        </div>
+                        <input name="url" type="file" class="upload_input" onchange="change(this)" />
 
-        <div class="borderLine"></div>
-        <div class="storyHighlights">
-            <p><b>Story Highlights</b></p>
-        </div>
-        <div class="borderLine"></div>
-        <div class="galleryIcon">
-            <img src="img/icon1.png" alt="" style="width:80px;">
-            <img src="img/icon2.png" alt="" style="width:80px;">
-        </div>
-        <div class="borderLine"></div>
-        <div class="album">
-            <div class="item">
-                <img class="addImg" onclick="clickImg(this);" src="img/addButton.png" style="width:240px;" />
-
-                <div class="preBlock">
-                    <img class="preview" alt="" name="pic" />
+                        <img class="delete" onclick="deleteImg(this)" src="images/delete.png" />
+                    </div>
+                    <!--
+                        <div style="position: relative;">
+                            <input id="profileInput" type='file' onchange="readURL(this);" />
+                            <img src="img/profile.png" id="profilePic" style="width:200px;">
+                        </div>
+                        -->
                 </div>
-                <input name="url" type="file" class="upload_input" onchange="change(this)" />
-
-                <img class="delete" onclick="deleteImg(this)" src="images/delete.png" />
+                <div class="post">
+                    <input class="profileNum" type="text" value="6">
+                    <p>posts</p>
+                </div>
+                <div class="followers">
+                    <input class="profileNum" type="text" value="600">
+                    <p>followers</p>
+                </div>
+                <div class="following">
+                    <input class="profileNum" type="text" value="500">
+                    <p>following</p>
+                </div>
+                <div class="editProfile"><a href="#SNS" onclick="show('popup1')" class="button">
+                        <b>Edit Profile</b>
+                    </a></div>
             </div>
-            <div class="item">
-                <img class="addImg" onclick="clickImg(this);" src="img/addButton.png" style="width:240px;" />
-
-                <div class="preBlock">
-                    <img class="preview" alt="" name="pic" />
+            <div class="popup" id="popup1">
+                <h2>Edit Profile</h2>
+                <!--
+                    <div class="inpWrapper">
+                        <label for="inp" class="inp">
+                            <input type="text" id="inp" placeholder="&nbsp;">
+                            <span class="label">Describe Yourself</span>
+                            <span class="border"></span>
+                        </label>
+                    </div>
+                    -->
+                <textarea id="inp"></textarea>
+                <p style="font-size:0.8em;color:#9098a9;">You need to select at least 4 emojis</p>
+                <div style="padding-top:10px;">
+                    <button class="learn-more" onclick="hide('popup1');showValue()">
+                        <div class="circle">
+                            <span class="icon arrow"></span>
+                        </div>
+                        <p class="button-text">Submit</p>
+                    </button>
                 </div>
-                <input name="url" type="file" class="upload_input" onchange="change(this)" />
 
-                <img class="delete" onclick="deleteImg(this)" src="images/delete.png" />
-            </div>
-            <div class="item">
-                <img class="addImg" onclick="clickImg(this);" src="img/addButton.png" style="width:240px;" />
-
-                <div class="preBlock">
-                    <img class="preview" alt="" name="pic" />
-                </div>
-                <input name="url" type="file" class="upload_input" onchange="change(this)" />
-
-                <img class="delete" onclick="deleteImg(this)" src="images/delete.png" />
-            </div>
-            <div class="item">
-                <img class="addImg" onclick="clickImg(this);" src="img/addButton.png" style="width:240px;" />
-
-                <div class="preBlock">
-                    <img class="preview" alt="" name="pic" />
-                </div>
-                <input name="url" type="file" class="upload_input" onchange="change(this)" />
-
-                <img class="delete" onclick="deleteImg(this)" src="images/delete.png" />
-            </div>
-            <div class="item">
-                <img class="addImg" onclick="clickImg(this);" src="img/addButton.png" style="width:240px;" />
-
-                <div class="preBlock">
-                    <img class="preview" alt="" name="pic" />
-                </div>
-                <input name="url" type="file" class="upload_input" onchange="change(this)" />
-
-                <img class="delete" onclick="deleteImg(this)" src="images/delete.png" />
-            </div>
-            <div class="item">
-                <img class="addImg" onclick="clickImg(this);" src="img/addButton.png" style="width:240px;" />
-
-                <div class="preBlock">
-                    <img class="preview" alt="" name="pic" />
-                </div>
-                <input name="url" type="file" class="upload_input" onchange="change(this)" />
-
-                <img class="delete" onclick="deleteImg(this)" src="images/delete.png" />
             </div>
 
-        </div>
-        <div class="bottomNav">
-            <img src="img/icon3.png" alt="" style="width:60px;">
-            <img src="img/icon4.png" alt="" style="width:60px;">
-            <img src="img/icon5.png" alt="" style="width:60px;">
-            <img src="img/icon6.png" alt="" style="width:60px;">
-            <img src="img/icon7.png" alt="" class="addImg" style="width:60px;">
+            <div class="textProfile" id="textProfile"></div>
+            <div class="emoji"></div>
+
+            <div class="borderLine"></div>
+            <div class="storyHighlights">
+                <p><b>Story Highlights</b></p>
+            </div>
+            <div class="borderLine"></div>
+            <div class="galleryIcon">
+                <img src="img/icon1.png" alt="">
+                <img src="img/icon2.png" alt="">
+            </div>
+            <div class="borderLine"></div>
+            <div class="album">
+                <div class="item">
+                    <img class="addImg" onclick="clickImg(this);" src="img/addButton.png"
+                        style="height:100%; width:100%;object-fit:cover;" />
+
+                    <div class="preBlock">
+                        <img class="preview" alt="" name="pic" />
+                    </div>
+                    <input name="url" type="file" class="upload_input" onchange="change(this)" />
+
+                    <img class="delete" onclick="deleteImg(this)" src="images/delete.png" />
+                </div>
+                <div class="item">
+                    <img class="addImg" onclick="clickImg(this);" src="img/addButton.png"
+                        style="height:100%; width:100%;object-fit:cover;" />
+
+                    <div class="preBlock">
+                        <img class="preview" alt="" name="pic" />
+                    </div>
+                    <input name="url" type="file" class="upload_input" onchange="change(this)" />
+
+                    <img class="delete" onclick="deleteImg(this)" src="images/delete.png" />
+                </div>
+                <div class="item">
+                    <img class="addImg" onclick="clickImg(this);" src="img/addButton.png"
+                        style="height:100%; width:100%;object-fit:cover;" />
+
+                    <div class="preBlock">
+                        <img class="preview" alt="" name="pic" />
+                    </div>
+                    <input name="url" type="file" class="upload_input" onchange="change(this)" />
+
+                    <img class="delete" onclick="deleteImg(this)" src="images/delete.png" />
+                </div>
+                <div class="item">
+                    <img class="addImg" onclick="clickImg(this);" src="img/addButton.png"
+                        style="height:100%; width:100%;object-fit:cover;" />
+
+                    <div class="preBlock">
+                        <img class="preview" alt="" name="pic" />
+                    </div>
+                    <input name="url" type="file" class="upload_input" onchange="change(this)" />
+
+                    <img class="delete" onclick="deleteImg(this)" src="images/delete.png" />
+                </div>
+                <div class="item">
+                    <img class="addImg" onclick="clickImg(this);" src="img/addButton.png"
+                        style="height:100%; width:100%;object-fit:cover;" />
+
+                    <div class="preBlock">
+                        <img class="preview" alt="" name="pic" />
+                    </div>
+                    <input name="url" type="file" class="upload_input" onchange="change(this)" />
+
+                    <img class="delete" onclick="deleteImg(this)" src="images/delete.png" />
+                </div>
+                <div class="item">
+                    <img class="addImg" onclick="clickImg(this);" src="img/addButton.png"
+                        style="height:100%; width:100%;object-fit:cover;" />
+
+                    <div class="preBlock">
+                        <img class="preview" alt="" name="pic" />
+                    </div>
+                    <input name="url" type="file" class="upload_input" onchange="change(this)" />
+
+                    <img class="delete" onclick="deleteImg(this)" src="images/delete.png" />
+                </div>
+
+            </div>
+            <div class="bottomNav">
+                <img src="img/icon3.png" alt="">
+                <img src="img/icon4.png" alt="">
+                <img src="img/icon5.png" alt="">
+                <img src="img/icon6.png" alt="">
+                <img src="img/icon7.png" alt="">
+            </div>
         </div>
 
     </div>
+
+
+
 
     <script src="http://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -206,10 +391,16 @@
     <script src="lib/js/util.js"></script>
     <script src="lib/js/jquery.emojiarea.js"></script>
     <script src="lib/js/emoji-picker.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function () {
             $("#inp").emojioneArea();
         });
+
+        function menu(x) {
+            x.classList.toggle("change");
+            $(".selectAvatar").toggle();
+        }
     </script>
 </body>
 

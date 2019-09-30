@@ -4,6 +4,7 @@ body {
     font-family: "Open Sans", sans-serif;
     line-height: 2 em;
     margin: 0;
+
 }
 
 .well {
@@ -35,15 +36,14 @@ body {
 
 .instruction p {
     font-size: 0.9em;
-    line-height: 2em;
+    line-height: 1.5em;
 }
 
 .demo a {
-    position: absolute;
-    bottom: 20px;
     text-align: center;
-    width: 100vw;
+    width: 100%;
     z-index: 2;
+    padding-top: 100px;
     display: inline-block;
     -webkit-transform: translate(0, -50%);
     transform: translate(0, -50%);
@@ -57,6 +57,9 @@ body {
     opacity: .5;
 }
 
+#section05 {
+    margin-top: 70px;
+}
 
 #section05 a {
     padding-top: 70px;
@@ -113,10 +116,33 @@ body {
 .selectAvatar {
     display: none;
     position: absolute;
-    background-color: #fff;
+    padding-top: 12vh;
+    background-color: rgba(255, 255, 255, 0.95);
     z-index: 30;
     width: 100vw;
+    height: 100vh;
     text-align: center;
+}
+
+.btn {
+    background: #fff;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 1000px;
+    padding: 2px 2px;
+    transition-duration: .2s;
+    perspective: 1000px;
+    transform-origin: center center 0px;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+}
+
+.btn:hover {
+    opacity: 0.5;
+    color: white;
+}
+
+.pressed {
+    transform: matrix(0.8, 0, 0, 0.8, 0, 0);
 }
 
 #girlAvatarOff {
@@ -136,7 +162,7 @@ body {
 }
 
 .SNS {
-    height: 800px;
+    height: 100vh;
     width: 100vw;
     background-color: #fff;
 }
@@ -154,7 +180,7 @@ body {
 }
 
 .username {
-    font-size: 1.5em;
+    font-size: 1.2em;
     text-decoration-line: underline;
 }
 
@@ -307,7 +333,7 @@ body {
     background-color: #fff;
     padding: 10px 160px;
     color: #222;
-    font-size: 1.2em;
+    font-size: 1em;
     text-decoration: none;
     border-radius: 10px;
 
@@ -418,13 +444,14 @@ button:hover .button-text {
     left: 50%;
     margin-left: -250px;
     height: 300px;
-    top: 50%;
+    top: 40%;
     margin-top: -100px;
     background: #FFF;
     z-index: 20;
 }
 
-#popup1:after {
+#popup1:after,
+#popup2:after {
     position: fixed;
     content: "";
     top: 0;
@@ -435,7 +462,8 @@ button:hover .button-text {
     z-index: -2;
 }
 
-#popup1:before {
+#popup1:before,
+#popup2:before {
     position: absolute;
     content: "";
     top: 0;
@@ -445,6 +473,8 @@ button:hover .button-text {
     background: #FFF;
     z-index: -1;
 }
+
+
 
 .inpWrapper {
     display: flex;
@@ -531,11 +561,11 @@ button:hover .button-text {
 }
 
 .storyHighlights {
-    margin: 30px;
+    margin: 20px 30px;
 }
 
 .storyHighlights p {
-    font-size: 23px;
+    font-size: 0.8em;
 }
 
 .galleryIcon {
@@ -705,21 +735,21 @@ button:hover .button-text {
 
     .profileNum {
 
-        font-size: 1.2em;
+        font-size: 1.1em;
 
         font-weight: 600;
     }
 
     .post p {
-        font-size: 0.8em;
+        font-size: 0.7em;
     }
 
     .followers p {
-        font-size: 0.8em;
+        font-size: 0.7em;
     }
 
     .following p {
-        font-size: 0.8em;
+        font-size: 0.7em;
     }
 
     .button {
@@ -742,7 +772,7 @@ button:hover .button-text {
     }
 
     .galleryIcon img {
-        width: 60px;
+        width: 50px;
     }
 
     .popup {
@@ -751,7 +781,7 @@ button:hover .button-text {
         left: 50%;
         margin-left: -175px;
         height: 300px;
-        top: 50%;
+        top: 40%;
         margin-top: -100px;
         background: #FFF;
         z-index: 20;
@@ -761,7 +791,46 @@ button:hover .button-text {
         font-size: 1.3em;
     }
 
+    .profilePic:hover,
+    .btn:hover,
+    .item:hover {
+        opacity: 1;
+    }
+
     .bottomNav img {
-        width: 45px;
+        width: 40px;
+    }
+}
+
+@media (min-width: 750px) {
+    .instruction {
+        width: 670px;
+    }
+
+    .SNS {
+        height: 100vh;
+        width: 750px;
+    }
+
+    .selectAvatar {
+        width: 750px;
+    }
+
+    .popup {
+
+        left: 375px;
+    }
+
+    .album {
+        margin: 0;
+    }
+
+    .album .item {
+        width: 245px;
+        height: 245px;
+    }
+
+    .bottomNav {
+        width: 750px;
     }
 }

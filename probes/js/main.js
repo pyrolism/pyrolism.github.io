@@ -48,6 +48,8 @@ function showValue2() {
 
 })(window.jQuery);
 
+
+
 /*
 function readURL(input) {
     var file = input.files[0];
@@ -158,7 +160,9 @@ function girlAvatar() {
 
 
     document.getElementById("hamburger").classList.toggle("change");
-    $(".selectAvatar").hide();
+
+
+    $(".selectAvatar").delay(500).fadeOut();
 };
 
 function boyAvatar() {
@@ -174,7 +178,9 @@ function boyAvatar() {
 
 
     document.getElementById("hamburger").classList.toggle("change");
-    $(".selectAvatar").hide();
+
+
+    $(".selectAvatar").delay(500).fadeOut();
 };
 
 function offlineAvatar() {
@@ -185,14 +191,35 @@ function offlineAvatar() {
     document.getElementById("offlineAvatarOn").style.display = 'inline';
     document.getElementById("offlineAvatarOff").style.display = 'none';
 
-
     document.getElementById("onlineSelf").style.display = 'none';
     document.getElementById("offlineSelf").style.display = 'inline';
 
     document.getElementById("hamburger").classList.toggle("change");
-    $(".selectAvatar").hide();
+
+
+    $(".selectAvatar").delay(500).fadeOut();
     //$('.bottomNav').css("background-color", "#333639");
 };
+
+$(".btn").mousedown(function () {
+    $(this).addClass("pressed");
+});
+
+$(".btn").mouseup(function () {
+    $(this).removeClass("pressed");
+});
+
+$(".btn").on("tap", function () {
+    $(this).addClass("pressed");
+});
+
+$(".btn").on("tap", function () {
+    $(this).removeClass("pressed");
+});
+
+$(".btn").mouseout(function () {
+    $(this).removeClass("pressed");
+});
 
 
 $(function () {

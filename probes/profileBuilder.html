@@ -19,28 +19,38 @@
         <div class="panel"></div>
     </div>
     -->
-    <section id="section05" class="demo">
-        <a href="#SNS"><span></span>Scroll Down</a>
-    </section>
+
     <div class="instruction">
         <h3 style="font-weight:400; margin:0;">CULTURAL PROBE</h3>
         <h1 style="font-size:75px; font-weight:800; margin:0;">Profile Builder</h1>
-        <p>In this section, we want you to design your own profile using only emojis. Which emojis will you choose to
-            express yourself?</p>
-        <p>係這個環節，你需要使用Emoji來搭建你自己的主頁。你會如何表達自己？
+        <p style="color:#aaa;">In this section, we want you to design your own profile using only emojis. Which emojis
+            will you choose to
+            express yourself?
+        </p>
+        <p style="font-size:1em;">
+            <b>For each:</b>
             </br>
-            1.Enter your name.
+            1) Enter your name.
             </br>
-            2.Change your profile picture.
+            2) Select and upload your profile picture.
             <br />
-            3.Edit your profile (with emojis).
+            3) Use only emojis to captin the profile.
             <br />
-            4.(optional)Upload photos to furthur represent yourself if you want.
+            4) Select up to 6 photos.
+            <br />
+        </p>
+        </p>
+        Screenshot the profiles and send it over to us via WhatsApp or email (<a
+            href="mailto:analyn.yap@connect.polyu.hk"
+            style="text-decoration: none; color:rgb(247, 62, 123);">analyn.yap@connect.polyu.hk</a>)
         </p>
 
+        <section id="section05" class="demo">
+            <a href="#SNS"><span></span>Tap to Scroll</a>
+        </section>
+
+
     </div>
-
-
     <div class="SNS" id="SNS">
         <div class="navbar">
             <div class="icon"><img class="icon-img" src="img/time-lapse.svg"></div>
@@ -54,22 +64,31 @@
             </div>
         </div>
         <div class="selectAvatar">
-            <h4>Select from the following</h4>
-            <h2>The avatar of you</h2>
+            <h5>Select from the following</h5>
+            <h2 style="margin:0;">YOUR ONLINE SELF</h2>
+            <p style="margin:0; padding-top:10px;padding-bottom:20px;color:#aaa; font-weight:100;"><i>The avatar of
+                    you</i></p>
             <div class="onlineAvatar" style="display:inline;">
-                <input id="girlAvatarOn" type="image" src="img/girl-avatar.png" onclick="girlAvatar();"
-                    style="width:100px;" />
-                <input id="girlAvatarOff" type="image" src="img/girl-avatar-bw.png" onclick="girlAvatar();"
-                    style="width:100px;" />
-                <input id="boyAvatarOn" type="image" src="img/boy-avatar.png" onclick="boyAvatar();" style="
-                            width:100px;" />
-                <input id="boyAvatarOff" type="image" src="img/boy-avatar-bw.png" onclick="boyAvatar();"
-                    style="width:100px;" />
+                <div class="btn">
+                    <input id="girlAvatarOn" type="image" src="img/girl-avatar.png" onclick="girlAvatar();"
+                        style="width:100px;" />
+                    <input id="girlAvatarOff" type="image" src="img/girl-avatar-bw.png" onclick="girlAvatar();"
+                        style="width:100px;" />
+                </div>
+                <div class="btn">
+                    <input id="boyAvatarOn" type="image" src="img/boy-avatar.png" onclick="boyAvatar();" style="
+                        width:100px;" />
+                    <input id="boyAvatarOff" type="image" src="img/boy-avatar-bw.png" onclick="boyAvatar();"
+                        style="width:100px;" />
+                </div>
             </div>
 
-            <h2>The real you</h2>
-            <div class="offlineAvatar">
-                <input id="offlineAvatarOn" type="image" src="img/anomynous-avatar.png" style="width:100px;">
+            <h2 style="margin:0; padding-top:40px;">YOUR REAL SELF</h2>
+            <p style="margin:0; padding-top:10px;padding-bottom:20px;color:#aaa; font-weight:100;"><i>the type of person
+                    that you are when you are not trying to impress anyone</i></p>
+            <div class="offlineAvatar btn">
+                <input id="offlineAvatarOn" type="image" src="img/anomynous-avatar.png" onclick="offlineAvatar();"
+                    style="width:100px;">
                 <input id="offlineAvatarOff" type="image" src="img/anomynous-avatar-bw.png" onclick="offlineAvatar();"
                     style="width:100px;">
             </div>
@@ -411,8 +430,17 @@
 
         function menu(x) {
             x.classList.toggle("change");
-            $(".selectAvatar").toggle();
+            $(".selectAvatar").fadeToggle();
         }
+
+        $("#section05 a").click(function () { //可替换为：$(".yjw").click(function(){
+            var href = $(this).attr("href");
+            var pos = $(href).offset().top;
+            $("html,body").animate({
+                scrollTop: pos
+            }, 1000);
+            return false;
+        });
     </script>
 </body>
 

@@ -11,6 +11,8 @@ var hide = function (id) {
 }
 */
 
+
+
 function show(id) {
     document.getElementById(id).style.display = 'block';
 }
@@ -23,6 +25,12 @@ function showValue() {
     var name = document.getElementById('inp').value;
     document.getElementById('textProfile').innerHTML = name;
 }
+
+function showValue2() {
+    var name = document.getElementById('inp2').value;
+    document.getElementById('textProfile2').innerHTML = name;
+}
+
 
 // remap jQuery to $
 (function ($) {
@@ -147,6 +155,10 @@ function girlAvatar() {
 
     document.getElementById("onlineSelf").style.display = 'inline';
     document.getElementById("offlineSelf").style.display = 'none';
+
+
+    document.getElementById("hamburger").classList.toggle("change");
+    $(".selectAvatar").hide();
 };
 
 function boyAvatar() {
@@ -159,6 +171,10 @@ function boyAvatar() {
 
     document.getElementById("onlineSelf").style.display = 'inline';
     document.getElementById("offlineSelf").style.display = 'none';
+
+
+    document.getElementById("hamburger").classList.toggle("change");
+    $(".selectAvatar").hide();
 };
 
 function offlineAvatar() {
@@ -172,6 +188,33 @@ function offlineAvatar() {
 
     document.getElementById("onlineSelf").style.display = 'none';
     document.getElementById("offlineSelf").style.display = 'inline';
-    menu(this)
-    /*$('.SNS').css("background-color", "#333639")*/
+
+    document.getElementById("hamburger").classList.toggle("change");
+    $(".selectAvatar").hide();
+    //$('.bottomNav').css("background-color", "#333639");
 };
+
+
+$(function () {
+    $(window).bind("scroll", function () {
+        var sTop = $(window).scrollTop();
+        var sTop = parseInt(sTop);
+        if (sTop >= 700) {
+            if (!$(".bottomNav").is(":visible")) {
+                try {
+                    $(".bottomNav").slideDown();
+                } catch (e) {
+                    $(".bottomNav").show();
+                }
+            }
+        } else {
+            if ($(".bottomNav").is(":visible")) {
+                try {
+                    $(".bottomNav").slideUp();
+                } catch (e) {
+                    $(".bottomNav").hide();
+                }
+            }
+        }
+    });
+})

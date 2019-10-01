@@ -675,6 +675,7 @@ button:hover .button-text {
 @media (max-width: 750px) {
     .SNS {
         width: 100vw;
+        height: 750px;
     }
 
     .navbar {
@@ -796,6 +797,11 @@ button:hover .button-text {
     .item:hover {
         opacity: 1;
     }
+
+    .name-field:hover {
+        background-color: #fafbfc;
+    }
+
 
     .bottomNav img {
         width: 40px;

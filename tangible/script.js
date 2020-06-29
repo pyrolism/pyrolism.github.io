@@ -98,10 +98,10 @@ function draw() {
             let dist1 = Math.sqrt(Math.pow((window.innerWidth - 300 - xpos), 2) + Math.pow((window.innerHeight - 300 - ypos), 2));
             let dist2 = Math.sqrt(Math.pow((300 - xpos), 2) + Math.pow((300 - ypos), 2));
             if (dist1 < circle_r1 / 2) {
-                fill('#FF887333');
+                fill('#BEB8EB33');
                 ellipse(xpos, ypos, cellSize * 2, cellSize * 2);
             } else if (dist2 < circle_r2 / 2) {
-                fill('#9F9CFF33')
+                fill('##A2BCE033')
                 ellipse(xpos, ypos, cellSize * 2, cellSize * 2);
             }
             ellipse(xpos, ypos, cellSize / 14, cellSize / 14);

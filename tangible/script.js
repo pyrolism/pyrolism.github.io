@@ -83,10 +83,10 @@ function draw() {
     //noStroke();
     // circle(window.innerWidth - 300, window.innerHeight - 300, circle_r1);
     noFill();
-    stroke('#FF887388');
+    stroke('#BEB8EB88');
     ellipse(window.innerWidth - 300, window.innerHeight - 300, circle_r1, circle_r1);
     noFill();
-    stroke('#9F9CFF88');
+    stroke('#A2BCE088');
     ellipse(300, 300, circle_r2, circle_r2);
 
     for (let i = 0; i < cells.length; i++) {

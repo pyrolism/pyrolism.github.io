@@ -605,15 +605,3 @@ function updateCell() {
   cells = next;
   next = temp;
 }
-
-
-
-
-function tutorial() {
-  console.log('a');
-}
-
-
-function play() {
-  console.log('a');
-}

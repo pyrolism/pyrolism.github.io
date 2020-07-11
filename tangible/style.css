@@ -24,13 +24,7 @@ body {
     border-radius: 30px;
 }
 
-#logo {
-    position: absolute;
-    top: 170px;
-    left: 87px;
-    margin: auto;
-    width: 50%;
-}
+
 
 .tutorial {
     width: 110px;

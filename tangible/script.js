@@ -97,7 +97,7 @@ function draw() {
       let ypos = i * cellSize + cellSize / 2;
       let dist1 = Math.sqrt(
         Math.pow(window.innerWidth - 300 - xpos, 2) +
-          Math.pow(window.innerHeight - 300 - ypos, 2)
+        Math.pow(window.innerHeight - 300 - ypos, 2)
       );
       let dist2 = Math.sqrt(Math.pow(300 - xpos, 2) + Math.pow(300 - ypos, 2));
       if (dist1 < circle_r1 / 2) {
@@ -124,4 +124,16 @@ class Circle {
     fill(r, g, b, a);
     circle(this.x, this.y, this.r);
   }
+}
+
+
+
+
+function tutorial() {
+  console.log('a');
+}
+
+
+function play() {
+  console.log('a');
 }

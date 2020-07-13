@@ -67,7 +67,8 @@ body {}
 #btnStop,
 #btnResume {
     position: absolute;
-    bottom: 145px;
+    left: 116px;
+    bottom: 124px;
     display: none;
 }
 

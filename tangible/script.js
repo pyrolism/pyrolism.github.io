@@ -116,6 +116,10 @@ client.on("connect", function () {
   client.subscribe("/rfid4");
   client.subscribe("/onerev4");
   client.subscribe("/button");
+  client.subscribe("/btnTutorial");
+  client.subscribe("/btnPlay");
+  client.subscribe("/btnStop");
+  client.subscribe("/btnResume");
   client.unsubscribe("/example");
 
   // setInterval(function () {
@@ -127,6 +131,26 @@ client.on("message", function (topic, message) {
   //console.log('new message:', topic, message.toString());
   let obj = JSON.parse(message.toString());
   //console.log(topic, obj);
+
+  if (topic === "/btnTutorial") {
+    document.getElementById('landingScreen').style.display = "none";
+  }
+
+  if (topic === "/btnPlay") {
+    document.getElementById('landingScreen').style.display = "none";
+    let elem = document.getElementById('tutorialScreen');
+    elem.style.transition = "all 0.5s ease-in";
+    elem.style.top = "-2000px";
+    client.publish('/web', 'started');
+  }
+
+  if (topic === "/btnStop") {
+    frameRate(0);
+  }
+
+  if (topic === "/btnResume") {
+    frameRate(60);
+  }
 
   for (let i = 0; i < numCircles; i++) {
     let circleIndex = (i + 1).toString();
@@ -428,7 +452,7 @@ function draw() {
         for (let n = 0; n < ripple.length; n++) {
           let dist = Math.sqrt(
             Math.pow(ripple[n].pos.x - xpos, 2) +
-              Math.pow(ripple[n].pos.y - ypos, 2)
+            Math.pow(ripple[n].pos.y - ypos, 2)
           );
           if (dist < ripple[n].r / 2 && dist > (ripple[n].r / 2) * 0.9) {
             fill(ripple[n].color);
@@ -564,7 +588,7 @@ function draw() {
         for (let n = 0; n < circles.length; n++) {
           let dist = Math.sqrt(
             Math.pow(circles[n].pos.x - xpos, 2) +
-              Math.pow(circles[n].pos.y - ypos, 2)
+            Math.pow(circles[n].pos.y - ypos, 2)
           );
           if (dist <= circles[n].r / 2) {
             fill(circles[n].color);
@@ -646,8 +670,7 @@ class Circle {
     this.yn += 0.001;
     this.pos.x = -(width / 5) + ((noise(this.xn) * 7) / 5) * window.innerWidth;
     // this.pos.x += 10;
-    this.pos.y =
-      -(height / 5) + ((noise(this.yn) * 7) / 5) * window.innerHeight;
+    this.pos.y = -(height / 5) + ((noise(this.yn) * 7) / 5) * window.innerHeight;
   }
 
   move_drop() {

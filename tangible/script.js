@@ -206,6 +206,27 @@ client.on("message", function (topic, message) {
         ripple[ripple.length - 1].setColor(currentColor);
         isColorInserted = 1;
         //synth.triggerAttackRelease("B4", "16n");
+        let random_x = int(random(width));
+        let random_y = int(random(height));
+        for (let x = 0; x < boardWidth; x++) {
+          for (let y = 0; y < boardHeight; y++) {
+            let xpos = x * cellSize + cellSize / 2;
+            let ypos = y * cellSize + cellSize / 2;
+            let dist = Math.sqrt(
+              Math.pow(random_x - xpos, 2) + Math.pow(random_y - ypos, 2)
+            );
+            if (dist < 150) {
+              for (let k = 0; k < color_r.length; k++) {
+                if (circles[i].color === color_r[k]) {
+                  cells[x][y] = k;
+                  console.log(k);
+                }
+              }
+            }
+
+            //console.log(mouseX, mouseY, xpos, ypos, dist);
+          }
+        }
         kit.get("se").start();
       }
     }
@@ -590,7 +611,7 @@ function draw() {
             Math.pow(circles[n].pos.x - xpos, 2) +
             Math.pow(circles[n].pos.y - ypos, 2)
           );
-          if (dist <= circles[n].r / 2) {
+          if (dist <= circles[n].r) {
             fill(circles[n].color);
             noStroke();
             let radius = map(dist, 0, circles[n].r / 2, 50, 0);
@@ -604,14 +625,14 @@ function draw() {
             //   ypos + radius
             // );
             ellipse(xpos, ypos, radius, radius);
-            if (isColorInserted == 1) {
-              isColorInserted = 0;
-              for (let k = 0; k < colors.length; k++) {
-                if (circles[n].color === colors[k]) {
-                  cells[x][y] = n;
-                }
-              }
-            }
+            // if (isColorInserted == 1) {
+            //   isColorInserted = 0;
+            //   for (let k = 0; k < colors.length; k++) {
+            //     if (circles[n].color === colors[k]) {
+            //       cells[x][y] = n;
+            //     }
+            //   }
+            // }
 
             //rotate(PI / 2);
           }

@@ -1,21 +1,20 @@
-document.getElementById('landingScreen').onclick = function (event) {
-  let elem = document.getElementById('landingScreen');
+document.getElementById("landingScreen").onclick = function (event) {
+  let elem = document.getElementById("landingScreen");
   elem.style.transition = "all 1s ease-in-out";
   elem.style.opacity = "0";
 
-  if (document.getElementById('landingScreen').style.opacity == "0") {
-    document.getElementById('landingScreen').style.display = "none";
+  if (document.getElementById("landingScreen").style.opacity == "0") {
+    document.getElementById("landingScreen").style.display = "none";
   }
-}
+};
 
-
-document.getElementById('tutorialScreen').onclick = function (event) {
-  let elem = document.getElementById('tutorialScreen');
+document.getElementById("tutorialScreen").onclick = function (event) {
+  let elem = document.getElementById("tutorialScreen");
   elem.style.transition = "all 0.5s ease-in";
   elem.style.top = "-2000px";
-  client.publish('/web', 'started');
-}
+};
 
+let mode = "DE";
 
 let colors = [
   "#F25F5C55",
@@ -40,6 +39,10 @@ let diskUID = [
 ];
 
 var synth = new Tone.Synth().toMaster();
+var kit = new Tone.Players({
+  se: "se.mp3",
+});
+kit.toMaster();
 
 let clients_canvas = [];
 
@@ -69,6 +72,7 @@ let boardHeight = Math.ceil(window.innerHeight / cellSize);
 let cells = [];
 let next = [];
 let previous = [];
+let states = 5;
 for (let x = 0; x < boardWidth; x++) {
   cells[x] = [];
 }
@@ -80,6 +84,13 @@ for (let x = 0; x < boardWidth; x++) {
 }
 
 let totalCells = boardWidth * boardHeight;
+
+var predatorMin = 3;
+var randomPredatorMinimum = 3;
+var prevTime = 0,
+  interval = 10;
+var iterationCount = 0;
+let isColorInserted = 0;
 
 let rBlink = cellSize;
 let easing = 0.5;
@@ -105,10 +116,6 @@ client.on("connect", function () {
   client.subscribe("/rfid4");
   client.subscribe("/onerev4");
   client.subscribe("/button");
-  client.subscribe("/btnTutorial");
-  client.subscribe("/btnPlay");
-  client.subscribe("/btnStop");
-  client.subscribe("/btnResume");
   client.unsubscribe("/example");
 
   // setInterval(function () {
@@ -120,26 +127,6 @@ client.on("message", function (topic, message) {
   //console.log('new message:', topic, message.toString());
   let obj = JSON.parse(message.toString());
   //console.log(topic, obj);
-
-  if (topic === "/btnTutorial") {
-    document.getElementById('landingScreen').style.display = "none";
-  }
-
-  if (topic === "/btnPlay") {
-    document.getElementById('landingScreen').style.display = "none";
-    let elem = document.getElementById('tutorialScreen');
-    elem.style.transition = "all 0.5s ease-in";
-    elem.style.top = "-2000px";
-    client.publish('/web', 'started');
-  }
-
-  if (topic === "/btnStop") {
-    frameRate(0);
-  }
-
-  if (topic === "/btnResume") {
-    frameRate(60);
-  }
 
   for (let i = 0; i < numCircles; i++) {
     let circleIndex = (i + 1).toString();
@@ -174,8 +161,11 @@ client.on("message", function (topic, message) {
 
     let onerevTopic = "/onerev" + circleIndex;
     if (topic === onerevTopic) {
-      if (obj.hasOwnProperty("rOneRev") && isColorReceived == 1 && isWrongDir != 1) {
-
+      if (
+        obj.hasOwnProperty("rOneRev") &&
+        isColorReceived == 1 &&
+        isWrongDir != 1
+      ) {
         let angle = random(-TWO_PI / 2, TWO_PI / 2);
         let xpos = circles[i].pos.x + cos(angle) * random(0, circles[i].r / 2);
         let ypos = circles[i].pos.y + sin(angle) * random(0, circles[i].r / 2);
@@ -190,6 +180,9 @@ client.on("message", function (topic, message) {
         circles_c[i][circles_c[i].length - 1].setColor(newColor);
         ripple.push(new Circle(xpos, ypos, circles[i].r, circles[i].r));
         ripple[ripple.length - 1].setColor(currentColor);
+        isColorInserted = 1;
+        //synth.triggerAttackRelease("B4", "16n");
+        kit.get("se").start();
       }
     }
   }
@@ -264,10 +257,10 @@ client.on("message", function (topic, message) {
 
 // let img;
 let img_error;
+let ele;
 
 function preload() {
   img_error = loadImage("img/Error_CW.png");
-
 }
 
 function setup() {
@@ -276,6 +269,8 @@ function setup() {
   background(255);
 
   frameRate(60);
+
+  ele = createAudio("bgmusic.mp3");
 
   img_error.resize(80, 80);
 
@@ -289,7 +284,6 @@ function setup() {
     bg.fill(240, 70);
     bg.rect(x, y, s, s);
   }
-
 
   /* draw grid */
   for (let i = 0; i < boardWidth; i++) {
@@ -322,27 +316,35 @@ function setup() {
   clients_canvas[2] = createGraphics(width, height);
   clients_canvas[3] = createGraphics(width, height);
 
-
-  //initCell();
+  initCell();
 }
 
 let value = 0;
 
 function keyTyped() {
-  if (key === "r") {
-    value = 1;
+  if (mode === "CA") {
+    if (key === "r") {
+      value = 1;
+    }
+    if (key === "c") {
+      value = 2;
+    }
+    if (key === "p") {
+      value = 3;
+    }
+    if (key == "y") {
+      value = 4;
+    }
+    if (key == "k") {
+      value = 0;
+    }
   }
-  if (key === "c") {
-    value = 2;
+
+  if (key == "q") {
+    mode = "DE";
   }
-  if (key === "p") {
-    value = 3;
-  }
-  if (key == "y") {
-    value = 4;
-  }
-  if (key == "k") {
-    value = 0;
+  if (key == "a") {
+    mode = "CA";
   }
 }
 
@@ -366,161 +368,243 @@ function mousePressed() {
 }
 
 function draw() {
+  ele.loop();
   // if (frameCount % 5 == 0) {
 
   //image(img, 0, 0);
-
-  image(bg, 0, 0);
-  // }
-  // noFill();
-  // stroke("#333333");
-  // rect(width / 5, height / 5, (width * 3) / 5, (height * 3) / 5);
-  //updateCell();
-
-  for (let i = 0; i < numCircles; i++) {
-    circles[i].setRadius(circle_r[i]);
-  }
-  circles[0].setColor(color_r[0]);
-  circles[1].setColor(color_r[1]);
-  circles[2].setColor(color_r[2]);
-  circles[3].setColor(color_r[3]);
-  //console.log(color_r1, color_r2);
-
-
-
-
-  for (let i = 0; i < circles_c.length; i++) {
-    circles_c[i].forEach((p) => {
-      p.edges();
-      p.move_drop();
-      if (frameCount % 60 == 0) {
-        p.shrinkCircle();
-        //p.dimCircle();
-      }
-    });
-    for (let j = 0; j < circles_c[i].length; j++) {
-      clients_canvas[i].noStroke();
-      clients_canvas[i].fill(circles_c[i][j].color);
-      clients_canvas[i].ellipse(
-        circles_c[i][j].pos.x,
-        circles_c[i][j].pos.y,
-        circles_c[i][j].r,
-        circles_c[i][j].r
-      );
-    }
-
-    // if (circles_c1[i].r > 0) {
-    //   circles_c1[i].setRadius(circles_c1[i].r - 1);
+  if (mode === "DE") {
+    image(bg, 0, 0);
     // }
-    //console.log(circles_c1[i].pos.x, circles_c1[i].pos.y);
-  }
+    // noFill();
+    // stroke("#333333");
+    // rect(width / 5, height / 5, (width * 3) / 5, (height * 3) / 5);
+    //updateCell();
 
-  // gridCircles.forEach((p) => {
-  //   p.blink();
-  // });
+    for (let i = 0; i < numCircles; i++) {
+      circles[i].setRadius(circle_r[i]);
+    }
+    circles[0].setColor(color_r[0]);
+    circles[1].setColor(color_r[1]);
+    circles[2].setColor(color_r[2]);
+    circles[3].setColor(color_r[3]);
+    //console.log(color_r1, color_r2);
 
-  /* draw grid */
-  for (let i = 0; i < boardWidth; i++) {
-    for (let j = 0; j < boardHeight; j++) {
-      let xpos = i * cellSize + cellSize / 2;
-      let ypos = j * cellSize + cellSize / 2;
-
-      for (let n = 0; n < ripple.length; n++) {
-        let dist = Math.sqrt(
-          Math.pow(ripple[n].pos.x - xpos, 2) +
-          Math.pow(ripple[n].pos.y - ypos, 2)
-        );
-        if (dist < ripple[n].r / 2 && dist > ripple[n].r / 2 * 0.9) {
-          fill(ripple[n].color);
-          noStroke();
-          ellipse(xpos, ypos, cellSize, cellSize);
+    for (let i = 0; i < circles_c.length; i++) {
+      circles_c[i].forEach((p) => {
+        p.edges();
+        p.move_drop();
+        if (frameCount % 60 == 0) {
+          p.shrinkCircle();
+          //p.dimCircle();
         }
+      });
+      for (let j = 0; j < circles_c[i].length; j++) {
+        clients_canvas[i].noStroke();
+        clients_canvas[i].fill(circles_c[i][j].color);
+        clients_canvas[i].ellipse(
+          circles_c[i][j].pos.x,
+          circles_c[i][j].pos.y,
+          circles_c[i][j].r,
+          circles_c[i][j].r
+        );
       }
 
-
-
-      //     fill("#888888FF");
-      //     noStroke();
-      //     ellipse(xpos, ypos, cellSize / 15, cellSize / 15);
-
-      //     // let isBlink = floor(random(5 * totalCells));
-      //     // //console.log(isBlink);
-      //     // if (isBlink < 1) {
-      //     //   gridCircles[i * boardHeight + j].setColor("#FFFFFFFF");
-      //     // } else {
-      //     //   gridCircles[i * boardHeight + j].setColor("#00000000");
-      //     // }
-
-      // for (let n = 0; n < circles.length; n++) {
-      //   let dist = Math.sqrt(
-      //     Math.pow(circles[n].pos.x - xpos, 2) +
-      //     Math.pow(circles[n].pos.y - ypos, 2)
-      //   );
-      //   if (dist <= circles[n].r / 2) {
-      //     fill(circles[n].color);
-      //     noStroke();
-      //     let radius = map(dist, 0, circles[n].r / 2, 50, 0);
-      //     //rectMode(RADIUS);
-      //     // triangle(
-      //     //   xpos,
-      //     //   ypos,
-      //     //   xpos - radius,
-      //     //   ypos + radius,
-      //     //   xpos + radius,
-      //     //   ypos + radius
-      //     // );
-      //     ellipse(xpos, ypos, radius, radius);
-      //     for (let k = 0; k < colors.length; k++) {
-      //       if (circles[n].color === colors[k]) {
-      //         //console.log(circles[n]);
-      //         cells[i][j] = k + 1;
-      //       }
-      //     }
-      //     //rotate(PI / 2);
-      //   }
+      // if (circles_c1[i].r > 0) {
+      //   circles_c1[i].setRadius(circles_c1[i].r - 1);
       // }
+      //console.log(circles_c1[i].pos.x, circles_c1[i].pos.y);
+    }
 
-      //     // if (cells[i][j] == 1) {
-      //     //   fill('#FCCF1222');
-      //     //   noStroke();
-      //     //   ellipse(xpos - cellSize / 2, ypos - cellSize / 2, cellSize, cellSize);
-      //     // } else {
+    // gridCircles.forEach((p) => {
+    //   p.blink();
+    // });
 
-      //     //fill('#15224488');
-      //     // }
+    /* draw grid */
+    for (let i = 0; i < boardWidth; i++) {
+      for (let j = 0; j < boardHeight; j++) {
+        let xpos = i * cellSize + cellSize / 2;
+        let ypos = j * cellSize + cellSize / 2;
 
+        for (let n = 0; n < ripple.length; n++) {
+          let dist = Math.sqrt(
+            Math.pow(ripple[n].pos.x - xpos, 2) +
+              Math.pow(ripple[n].pos.y - ypos, 2)
+          );
+          if (dist < ripple[n].r / 2 && dist > (ripple[n].r / 2) * 0.9) {
+            fill(ripple[n].color);
+            noStroke();
+            ellipse(xpos, ypos, cellSize, cellSize);
+          }
+        }
 
+        //     fill("#888888FF");
+        //     noStroke();
+        //     ellipse(xpos, ypos, cellSize / 15, cellSize / 15);
 
-      // if (cells[i][j] != previous[i][j]) {
-      //   if (cells[i][j] == 1) {
-      //     fill(colors[0]);
-      //   } else if (cells[i][j] == 2) {
-      //     fill(colors[1]);
-      //   } else if (cells[i][j] == 3) {
-      //     fill(colors[2]);
-      //   } else if (cells[i][j] == 4) {
-      //     fill(colors[3]);
-      //   } else fill("#33333300");
-      //   noStroke();
-      //   ellipse(xpos, ypos, cellSize, cellSize);
-      // }
+        //     // let isBlink = floor(random(5 * totalCells));
+        //     // //console.log(isBlink);
+        //     // if (isBlink < 1) {
+        //     //   gridCircles[i * boardHeight + j].setColor("#FFFFFFFF");
+        //     // } else {
+        //     //   gridCircles[i * boardHeight + j].setColor("#00000000");
+        //     // }
 
+        // for (let n = 0; n < circles.length; n++) {
+        //   let dist = Math.sqrt(
+        //     Math.pow(circles[n].pos.x - xpos, 2) +
+        //     Math.pow(circles[n].pos.y - ypos, 2)
+        //   );
+        //   if (dist <= circles[n].r / 2) {
+        //     fill(circles[n].color);
+        //     noStroke();
+        //     let radius = map(dist, 0, circles[n].r / 2, 50, 0);
+        //     //rectMode(RADIUS);
+        //     // triangle(
+        //     //   xpos,
+        //     //   ypos,
+        //     //   xpos - radius,
+        //     //   ypos + radius,
+        //     //   xpos + radius,
+        //     //   ypos + radius
+        //     // );
+        //     ellipse(xpos, ypos, radius, radius);
+        //     for (let k = 0; k < colors.length; k++) {
+        //       if (circles[n].color === colors[k]) {
+        //         //console.log(circles[n]);
+        //         cells[i][j] = k + 1;
+        //       }
+        //     }
+        //     //rotate(PI / 2);
+        //   }
+        // }
 
+        //     // if (cells[i][j] == 1) {
+        //     //   fill('#FCCF1222');
+        //     //   noStroke();
+        //     //   ellipse(xpos - cellSize / 2, ypos - cellSize / 2, cellSize, cellSize);
+        //     // } else {
 
-      //   }
+        //     //fill('#15224488');
+        //     // }
 
-      // image(bg, 0, 0);
-      // }
+        // if (cells[i][j] != previous[i][j]) {
+        //   if (cells[i][j] == 1) {
+        //     fill(colors[0]);
+        //   } else if (cells[i][j] == 2) {
+        //     fill(colors[1]);
+        //   } else if (cells[i][j] == 3) {
+        //     fill(colors[2]);
+        //   } else if (cells[i][j] == 4) {
+        //     fill(colors[3]);
+        //   } else fill("#33333300");
+        //   noStroke();
+        //   ellipse(xpos, ypos, cellSize, cellSize);
+        // }
+
+        //   }
+
+        // image(bg, 0, 0);
+        // }
+      }
+    }
+    // fill("#ed1234");
+    // textSize(24);
+    // text(int(frameRate()), 20, 100);
+
+    image(clients_canvas[0], 0, 0);
+    image(clients_canvas[1], 0, 0);
+    image(clients_canvas[2], 0, 0);
+    image(clients_canvas[3], 0, 0);
+
+    // noFill();
+    // stroke("#BEB8EB88");
+    // ellipse(
+    //   window.innerWidth - 300,
+    //   window.innerHeight - 300,
+    //   circle_r1,
+    //   circle_r1
+    // );
+    // noFill();
+    // stroke("#A2BCE088");
+    // ellipse(300, 300, circle_r2, circle_r2);
+
+    // for (let i = 0; i < cells.length; i++) {
+    //   for (let j = 0; j < cells[i].length; j++) {
+    //     fill("#888888FF");
+    //     noStroke();
+    //     let xpos = j * cellSize + cellSize / 2;
+    //     let ypos = i * cellSize + cellSize / 2;
+
+    //     ellipse(xpos, ypos, cellSize / 14, cellSize / 14);
+
+    //     let dist1 = Math.sqrt(
+    //       Math.pow(window.innerWidth - 300 - xpos, 2) +
+    //         Math.pow(window.innerHeight - 300 - ypos, 2)
+    //     );
+    //     let dist2 = Math.sqrt(Math.pow(300 - xpos, 2) + Math.pow(300 - ypos, 2));
+    //     if (dist1 < circle_r1 / 2) {
+    //       fill("#BEB8EB33");
+    //       ellipse(xpos, ypos, cellSize * 2, cellSize * 2);
+    //     } else if (dist2 < circle_r2 / 2) {
+    //       fill("#A2BCE033");
+    //       ellipse(xpos, ypos, cellSize, cellSize);
+    //     }
+    //   }
+    // }
+  }
+
+  if (mode === "CA") {
+    image(bg, 0, 0);
+    //fill(240);
+    //rect(0, 0, width, height);
+    for (y = 0; y < boardHeight; y++) {
+      for (x = 0; x < boardWidth; x++) {
+        let xpos = x * cellSize;
+        let ypos = y * cellSize;
+        for (let n = 0; n < circles.length; n++) {
+          let dist = Math.sqrt(
+            Math.pow(circles[n].pos.x - xpos, 2) +
+              Math.pow(circles[n].pos.y - ypos, 2)
+          );
+          if (dist <= circles[n].r / 2) {
+            fill(circles[n].color);
+            noStroke();
+            let radius = map(dist, 0, circles[n].r / 2, 50, 0);
+            //rectMode(RADIUS);
+            // triangle(
+            //   xpos,
+            //   ypos,
+            //   xpos - radius,
+            //   ypos + radius,
+            //   xpos + radius,
+            //   ypos + radius
+            // );
+            ellipse(xpos, ypos, radius, radius);
+            if (isColorInserted == 1) {
+              isColorInserted = 0;
+              for (let k = 0; k < colors.length; k++) {
+                if (circles[n].color === colors[k]) {
+                  cells[x][y] = n;
+                }
+              }
+            }
+
+            //rotate(PI / 2);
+          }
+        }
+        // if (cells[x][y] != previous[x][y]) {
+        if (cells[x][y] == 4) {
+          fill("#00000000");
+        } else fill(color_r[cells[x][y]]);
+        rect(xpos, ypos, cellSize, cellSize);
+        // }
+      }
+    }
+    if (millis() - prevTime > interval) {
+      step();
+      prevTime = millis();
     }
   }
-  // fill("#ed1234");
-  // textSize(24);
-  // text(int(frameRate()), 20, 100);
-
-  image(clients_canvas[0], 0, 0);
-  image(clients_canvas[1], 0, 0);
-  image(clients_canvas[2], 0, 0);
-  image(clients_canvas[3], 0, 0);
 
   circles.forEach((p) => {
     p.edges();
@@ -541,43 +625,6 @@ function draw() {
       break;
     }
   }
-
-
-  // noFill();
-  // stroke("#BEB8EB88");
-  // ellipse(
-  //   window.innerWidth - 300,
-  //   window.innerHeight - 300,
-  //   circle_r1,
-  //   circle_r1
-  // );
-  // noFill();
-  // stroke("#A2BCE088");
-  // ellipse(300, 300, circle_r2, circle_r2);
-
-  // for (let i = 0; i < cells.length; i++) {
-  //   for (let j = 0; j < cells[i].length; j++) {
-  //     fill("#888888FF");
-  //     noStroke();
-  //     let xpos = j * cellSize + cellSize / 2;
-  //     let ypos = i * cellSize + cellSize / 2;
-
-  //     ellipse(xpos, ypos, cellSize / 14, cellSize / 14);
-
-  //     let dist1 = Math.sqrt(
-  //       Math.pow(window.innerWidth - 300 - xpos, 2) +
-  //         Math.pow(window.innerHeight - 300 - ypos, 2)
-  //     );
-  //     let dist2 = Math.sqrt(Math.pow(300 - xpos, 2) + Math.pow(300 - ypos, 2));
-  //     if (dist1 < circle_r1 / 2) {
-  //       fill("#BEB8EB33");
-  //       ellipse(xpos, ypos, cellSize * 2, cellSize * 2);
-  //     } else if (dist2 < circle_r2 / 2) {
-  //       fill("#A2BCE033");
-  //       ellipse(xpos, ypos, cellSize, cellSize);
-  //     }
-  //   }
-  // }
 }
 
 class Circle {
@@ -599,7 +646,8 @@ class Circle {
     this.yn += 0.001;
     this.pos.x = -(width / 5) + ((noise(this.xn) * 7) / 5) * window.innerWidth;
     // this.pos.x += 10;
-    this.pos.y = -(height / 5) + ((noise(this.yn) * 7) / 5) * window.innerHeight;
+    this.pos.y =
+      -(height / 5) + ((noise(this.yn) * 7) / 5) * window.innerHeight;
   }
 
   move_drop() {
@@ -696,14 +744,11 @@ class Circle {
 function initCell() {
   for (let i = 0; i < boardWidth; i++) {
     for (let j = 0; j < boardHeight; j++) {
-      if (i == 0 || j == 0 || i == boardWidth - 1 || j == boardHeight - 1)
-        cells[i][j] = 0;
       // Filling the rest randomly
-      else
-        //cells[i][j] = 4;
-        cells[i][j] = Math.ceil(random(0, 5));
-      next[i][j] = 0;
-      previous[i][j] = 0;
+      //cells[i][j] = 4;
+      cells[i][j] = int(random(states));
+      //next[i][j] = 0;
+      previous[i][j] = 4;
     }
   }
 }
@@ -893,4 +938,53 @@ function updateCell() {
   let temp = cells;
   cells = next;
   next = temp;
+}
+
+function step() {
+  var cellsBuffer = cells;
+  for (y = 0; y < boardHeight; y++) {
+    for (x = 0; x < boardWidth; x++) {
+      var predatorNum = floor(states / 2);
+      var predators = [];
+      var predatorStates = [];
+      var gesamtPredators = 0;
+
+      for (var k = 0; k < predatorNum; k++) {
+        predatorStates[k] = (cells[x][y] + 1 + k) % states;
+        predators[k] = countNeighbours(x, y, predatorStates[k]);
+        gesamtPredators += predators[k];
+      }
+
+      if (gesamtPredators >= predatorMin + int(random(randomPredatorMinimum))) {
+        var r = int(random(gesamtPredators));
+        k = -1;
+        while (r >= 0) {
+          k++;
+          r -= predators[k];
+        }
+        cellsBuffer[x][y] = predatorStates[k];
+      }
+    }
+  }
+  previous = cells;
+  cells = cellsBuffer;
+  iterationCount++;
+}
+
+function countNeighbours(x, y, s) {
+  var c = 0;
+  for (i = 0; i < 3; i++) {
+    for (j = 0; j < 3; j++) {
+      if (i != 1 || j != 1) {
+        if (getCellState(x + j - 1, y + i - 1) == s) {
+          c++;
+        }
+      }
+    }
+  }
+  return c;
+}
+
+function getCellState(x, y) {
+  return cells[(x + boardWidth) % boardWidth][(y + boardHeight) % boardHeight];
 }

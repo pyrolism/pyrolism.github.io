@@ -303,9 +303,13 @@ client.on("message", function (topic, message) {
 // let img;
 let img_error;
 let ele;
+let img_qrcode;
+let img_logo;
 
 function preload() {
   img_error = loadImage("img/Error_CW.png");
+  img_qrcode = loadImage("img/qrcode.png");
+  img_logo = loadImage("img/canvas-logo.png");
 }
 
 function setup() {
@@ -318,6 +322,7 @@ function setup() {
   ele = createAudio("bgmusic.mp3");
 
   img_error.resize(80, 80);
+  img_logo.resize(156, 20);
 
   bg = createGraphics(width, height);
   bg.background(255, 70);
@@ -377,18 +382,18 @@ function keyTyped() {
     if (key === "p") {
       value = 3;
     }
-    if (key == "y") {
+    if (key === "y") {
       value = 4;
     }
-    if (key == "k") {
+    if (key === "k") {
       value = 0;
     }
   }
 
-  if (key == "q") {
+  if (key === "q") {
     mode = "DE";
   }
-  if (key == "a") {
+  if (key === "a") {
     mode = "CA";
   }
 }
@@ -651,11 +656,17 @@ function draw() {
     }
   }
 
+  //let playerNum = 0;
   circles.forEach((p) => {
     p.edges();
     p.move();
-    p.displayPos();
+    //p.displayPos();
     p.display();
+    // textSize(24);
+    // playerNum++;
+    // let playerName = "Player" + String(playerNum);
+    // textAlign(CENTER, CENTER);
+    // text(playerName, p.pos.x + 40, p.pos.y - 30);
   });
 
   ripple.forEach((p) => {
@@ -670,6 +681,8 @@ function draw() {
       break;
     }
   }
+  image(img_qrcode, 30, height - 150);
+  image(img_logo, 40, 40);
 }
 
 class Circle {
